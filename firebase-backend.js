@@ -1,6 +1,6 @@
 // オンライン対戦のつなぎ先(GitHub Pages 用):Firestore + 匿名ログイン
 // ゲーム本体(index.html)が claude.ai の中で使うのと同じ小さな形にそろえてある:
-//   db.doc(path).get / set / delete / onSnapshot
+//   db.doc(path).get / set / delete / onSnapshot   (rooms/<コード> と faces/<uid>)
 //   db.collection(path).where(...).limit(n).onSnapshot(...)
 //   db.runTx(path, update)  … 1手ごとの読み書きをトランザクションでまとめる
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
@@ -35,6 +35,16 @@ function wrap(snap) {
   const v = snap.exists() ? decode(snap.data()) : null;
   return { id: snap.id, exists: v !== null, data: () => v };
 }
+// 写真アイコンは faces/<uid> に別で置く(部屋のデータを軽いままにするため)。中身はそのまま保存する
+const isFace = path => path.startsWith('faces/');
+function encodeFace(f) {
+  return { img: String(f.img || ''), v: String(f.v || ''), updatedAt: Number(f.updatedAt) || Date.now() };
+}
+function wrapFace(snap) {
+  const d = snap.exists() ? snap.data() : null;
+  const v = d && typeof d.img === 'string' ? { img: d.img, v: String(d.v || ''), updatedAt: d.updatedAt } : null;
+  return { id: snap.id, exists: v !== null, data: () => v };
+}
 function fail(e) {
   const c = (e && e.code) || 'unavailable';
   return { code: c === 'resource-exhausted' ? 'quota_exceeded' : c, message: String((e && e.message) || e) };
@@ -62,14 +72,14 @@ export async function connect() {
 
   const db = {
     doc(path) {
-      const r = doc(fs, path);
+      const r = doc(fs, path), face = isFace(path), w = face ? wrapFace : wrap;
       return {
         path, id: r.id,
-        async get() { try { return wrap(await getDoc(r)); } catch (e) { throw fail(e); } },
-        async set(s) { try { await setDoc(r, encode(s)); } catch (e) { throw fail(e); } },
+        async get() { try { return w(await getDoc(r)); } catch (e) { throw fail(e); } },
+        async set(s) { try { await setDoc(r, face ? encodeFace(s) : encode(s)); } catch (e) { throw fail(e); } },
         async delete() { try { await deleteDoc(r); } catch (e) { throw fail(e); } },
         onSnapshot(next, onErr) {
-          return onSnapshot(r, x => next(wrap(x)), e => { if (onErr) onErr(fail(e)); });
+          return onSnapshot(r, x => next(w(x)), e => { if (onErr) onErr(fail(e)); });
         },
       };
     },

@@ -36,6 +36,20 @@ service cloud.firestore {
       allow delete: if signedIn() && resource.data.hostId == request.auth.uid;
     }
 
+    // 写真アイコン 1人 = ドキュメント 1つ(ID はその人の uid)。置けるのは本人だけ、中身は小さな画像だけ
+    match /faces/{uid} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['img', 'v', 'updatedAt'])
+        && request.resource.data.img is string
+        && request.resource.data.img.size() <= 12000
+        && request.resource.data.img.matches('^data:image/(jpeg|png|webp);base64,[A-Za-z0-9+/]+=*$')
+        && request.resource.data.v is string
+        && request.resource.data.v.size() <= 40;
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
     // それ以外は全部しめる
     match /{document=**} {
       allow read, write: if false;
