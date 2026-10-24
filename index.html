@@ -420,6 +420,76 @@ body.tense::after{content:"";position:fixed;inset:0;z-index:4;pointer-events:non
 .felt.th-aka{background:radial-gradient(130% 100% at 50% 45%,#7a3a2c 0%,#5a2621 55%,#331413 100%);border-color:#7a4a40}
 .felt.th-yoru{background:radial-gradient(130% 100% at 50% 45%,#343a7a 0%,#222650 55%,#10122b 100%);border-color:#43477a}
 .felt.th-sakura{background:radial-gradient(130% 100% at 50% 45%,#8d4f69 0%,#68364c 55%,#3c1d2b 100%);border-color:#8a5a6e}
+/* v9: claps, clocks, vote, people watching, whispers & cheers, tears, 因縁ボード, 殿堂, voice stamps */
+.clapbar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));translate:-50% 0;z-index:60;pointer-events:auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 14px 18px;border-radius:18px;background:rgba(10,24,30,.94);border:1px solid var(--coin);box-shadow:0 12px 30px rgba(0,0,0,.5);width:min(520px,calc(100vw - 24px));animation:fadein .2s ease both}
+.clapbar p{margin:0;font-weight:900;color:var(--coin)}
+.clapbar .cbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%}
+.clapb{flex:1 1 180px;min-height:58px;font-size:17px;background:var(--coin);color:var(--accent-ink);touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.clapb.dm{background:var(--felt-3);color:var(--ink);border:1px solid var(--rim)}
+.clapb b{font-variant-numeric:tabular-nums;margin-left:4px}
+.clapb:active{translate:0 2px}
+.clapbar .cbar{position:absolute;left:16px;right:16px;bottom:7px;height:4px;border-radius:2px;background:var(--coin);transform-origin:left;animation:cbar var(--ms,3.5s) linear forwards}
+@keyframes cbar{to{transform:scaleX(0)}}
+.emo{position:fixed;z-index:61;font-size:26px;line-height:1;pointer-events:none;animation:emo 1.1s ease-out forwards}
+@keyframes emo{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:1;transform:translate(calc(var(--dx)*.2),-10px) scale(1.15)}100%{transform:translate(var(--dx),-120px) scale(1);opacity:0}}
+.claps{display:flex;align-items:baseline;gap:4px 10px;flex-wrap:wrap;margin:0;font-weight:700}
+.claps b{color:var(--coin);font-size:18px}
+.claps small{color:var(--muted);font-weight:500}
+.cm{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:var(--felt);border:1px solid var(--rim)}
+.cm span{flex:0 0 auto;font-size:12px;font-weight:900;color:var(--coin);padding-top:2px}
+.cm p{margin:0;line-height:1.6}
+.clock{position:relative;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;flex:0 0 auto;background:conic-gradient(var(--coin) calc(var(--p,1)*360deg),rgba(255,255,255,.14) 0);font-size:12px;font-weight:900;color:var(--ink)}
+.clock::before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--felt-2)}
+.clock b{position:relative;font-variant-numeric:tabular-nums}
+.clock.low{background:conic-gradient(var(--bad) calc(var(--p,1)*360deg),rgba(255,255,255,.14) 0);animation:hot .9s ease-in-out infinite}
+.clock[hidden]{display:none}
+.seat-h .clock{margin-left:auto}
+.guide .clock{margin-left:auto}
+.guide.mine .clock{color:var(--accent-ink)}
+.guide.mine .clock::before{background:var(--accent)}
+.vote .clock{margin-left:auto}
+.pill.sub{background:var(--oya);color:#fff}
+.av.sad::after,.tile.wild.sad .face::after{content:"💧";position:absolute;right:-3px;top:-4px;font-size:13px;line-height:1;animation:tear 1.6s ease-in infinite;pointer-events:none}
+.tile.wild.sad .face::after{right:2px;top:2px;font-size:max(9px,calc(var(--w)*.3))}
+.tile.wild.sad .face{filter:saturate(.55) brightness(.92)}
+@keyframes tear{0%{transform:translateY(-2px);opacity:0}25%{opacity:1}100%{transform:translateY(9px);opacity:0}}
+.vote{grid-column:1/-1;display:flex;flex-direction:column;gap:8px;padding:8px;border-radius:12px;background:rgba(232,181,62,.1);border:1px solid rgba(232,181,62,.45)}
+.vote .vh{display:flex;align-items:center;gap:8px;color:var(--coin)}
+.vote .vh .msg{font-size:12px}
+.vopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.vopt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 10px;text-align:left;background:var(--felt);border:1px solid var(--rim);min-height:64px;min-width:0}
+.vopt small{font-size:11px;color:var(--muted);font-weight:500;line-height:1.35}
+.vopt.on{border-color:var(--coin);box-shadow:0 0 0 2px rgba(232,181,62,.35)}
+.vopt .vwho{display:flex;gap:2px;min-height:22px;flex-wrap:wrap}
+.vopt:disabled{opacity:1;cursor:default}
+.spec-row{display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap}
+.spec-row input{max-width:240px}
+.pchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border:1px solid var(--rim)}
+.pchip[aria-pressed="true"]{border-color:var(--coin);color:var(--coin);box-shadow:0 0 0 2px rgba(232,181,62,.3)}
+.guide.spec{background:var(--felt-3)}
+.bubble.whisper{background:#ddd5f7}
+.bubble.whisper::after{border-top-color:#ddd5f7}
+.bubble.cheer{background:#ccefd7}
+.bubble.cheer::after{border-top-color:#ccefd7}
+.wh-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px dashed var(--rim)}
+.stampb.wh{background:#ddd5f7;color:var(--bubble-ink);border-color:transparent}
+.rival .rv-firsts{display:flex;gap:6px;flex-wrap:wrap}
+.rival .rv-firsts .chip{gap:6px;padding:2px 10px 2px 2px}
+.rival .rv-hits{margin:0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.7}
+.rival .rv-hits b{color:var(--ink)}
+.hall .hl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.hall li{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border-radius:12px;background:var(--felt);border:1px solid var(--line);min-width:0}
+.hall .hr-n{flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--coin);color:var(--accent-ink);font-size:12px;font-weight:900}
+.hall .hl-b{display:flex;flex-direction:column;gap:4px;min-width:0}
+.hall .hl-h{display:flex;align-items:baseline;gap:4px 8px;flex-wrap:wrap}
+.hall .hl-p{color:var(--coin);font-weight:900}
+.hall .hl-h small,.hall .hl-y{color:var(--muted);font-size:12px}
+.hall .ts{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.hall .ts .gap{display:inline-block;width:6px}
+.zk .zk-f{color:var(--coin);font-size:10px;line-height:1.3}
+.vrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.vrow .vl{min-width:4em;font-size:13px;color:var(--muted)}
+button.rec{color:var(--bad);border-color:var(--bad);animation:hot 1s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -686,6 +756,10 @@ const pIdx=(s,id)=>s.players.findIndex(p=>p.id===id);
 const pName=(s,id)=>(s.players[pIdx(s,id)]||{}).name||'?';
 const nextIdx=(s,i)=>(i+1)%s.players.length;
 const humans=s=>s.players.filter(p=>!p.cpu);
+const activeHumans=s=>s.players.filter(p=>!p.cpu&&!p.sub);   // people actually at the table (not on 代打)
+const isAuto=p=>!!p&&(p.cpu||p.sub);
+const riverCount=s=>s.rivers?Object.values(s.rivers).reduce((n,r)=>n+r.length,0):0;
+const lastHist=s=>{const h=s&&s.history;return h&&h.length?h[h.length-1]:null};
 const r100=x=>Math.ceil(x/100)*100;
 const rid=()=>Math.random().toString(36).slice(2,8);
 
@@ -696,19 +770,46 @@ function dealRound(s){
   s.players.forEach((p,i)=>{s.hands[p.id]=wall.splice(0,i===s.dealer?HAND+1:HAND);s.rivers[p.id]=[];s.riichi[p.id]=false;s.reachAt[p.id]=-1});
   s.wall=wall;s.turn=s.dealer;s.phase='discard';s.drawn=null;s.lastDiscard=null;s.result=null;s.status='playing';s.firstTurn=true;s.ready={};s.roundId=rid();
   s.lucky=Math.floor(Math.random()*CHARS.length);
-  s.event=null;s.gold=null;s.teamDay=null;
-  if(o.events!==false&&Math.random()<.5){
-    s.event=EVENT_KEYS[Math.floor(Math.random()*EVENT_KEYS.length)];
-    if(s.event==='gold'){const all=makeWall(0);s.gold=all[Math.floor(Math.random()*all.length)]}
-    if(s.event==='teamday')s.teamDay=Math.floor(Math.random()*TEAMS.length);
+  setEvent(s,null);s.vote=null;
+  const lh=lastHist(s);s.sad=lh&&lh.how==='ロン'&&lh.from?lh.from:null;   // last round's deal-in cries this round
+  if(o.events!==false){
+    if(o.vote!==false&&activeHumans(s).length){s.vote={c:[...shuffle(EVENT_KEYS.slice()).slice(0,3),'none'],by:{}};s.phase='vote'}
+    else if(Math.random()<.5)setEvent(s,EVENT_KEYS[Math.floor(Math.random()*EVENT_KEYS.length)]);
   }
-  s.log=`第${s.round}局がはじまった。親は ${s.players[s.dealer].name}、ラッキーキャラは ${CHARS[s.lucky].n}`;
+  s.log=`第${s.round}局がはじまった。親は ${s.players[s.dealer].name}、ラッキーキャラは ${CHARS[s.lucky].n}`+(s.phase==='vote'?'。まずはお題の投票':'');
+}
+function setEvent(s,e){
+  s.event=e||null;s.gold=null;s.teamDay=null;
+  if(e==='gold'){const all=makeWall(0);s.gold=all[Math.floor(Math.random()*all.length)]}
+  if(e==='teamday')s.teamDay=Math.floor(Math.random()*TEAMS.length);
+}
+/* お題の投票: people pick one of 3 お題 or なし; CPUs and 代打 pick at random when it closes; ties are broken at random */
+function castVote(s,pid,k){
+  if(s.status!=='playing'||s.phase!=='vote'||!s.vote||!s.vote.c.includes(k))return false;
+  const p=s.players.find(x=>x.id===pid);if(!p||p.cpu||s.vote.by[pid]===k)return false;
+  s.vote.by[pid]=k;
+  if(activeHumans(s).every(x=>s.vote.by[x.id]))resolveVote(s);
+  return true;
+}
+function resolveVote(s){
+  if(s.status!=='playing'||s.phase!=='vote'||!s.vote)return false;
+  const v=s.vote,tally=Object.fromEntries(v.c.map(k=>[k,0]));
+  for(const p of s.players){
+    let k=v.by[p.id];
+    if(!(k in tally)&&isAuto(p)){k=v.c[Math.floor(Math.random()*v.c.length)];v.by[p.id]=k}
+    if(k in tally)tally[k]++;
+  }
+  const max=Math.max(...v.c.map(k=>tally[k])),top=v.c.filter(k=>tally[k]===max),win=top[Math.floor(Math.random()*top.length)];
+  v.win=win;v.tally=tally;setEvent(s,win==='none'?null:win);s.phase='discard';
+  const ev=s.event&&EVENTS[s.event];
+  s.log=ev?`投票の結果、お題は「${s.event==='teamday'?TEAMS[s.teamDay]+'の日':ev[0]}」`:'投票の結果、この局はお題なし';
+  return true;
 }
 function startGame(s){
   if(s.status!=='lobby'||s.players.length<2)return false;
   s.round=1;s.history=[];s.players.forEach(p=>p.score=START);s.dealer=Math.floor(Math.random()*s.players.length);dealRound(s);return true;
 }
-function record(s,e){(s.history=s.history||[]).push(e)}
+function record(s,e){e.rid=s.roundId;(s.history=s.history||[]).push(e)}
 function doDraw(s,pid){
   if(s.status!=='playing'||s.players[s.turn].id!==pid||s.phase!=='draw')return false;
   if(!s.wall.length){
@@ -776,8 +877,92 @@ function markReady(s,pid){
   if(s.status!=='roundEnd'||!s.players.some(p=>p.id===pid&&!p.cpu))return false;
   s.ready=s.ready||{};if(s.ready[pid])return false;
   s.ready[pid]=true;
-  if(humans(s).every(p=>s.ready[p.id]))nextRound(s);
+  checkAllReady(s);
   return true;
+}
+function checkAllReady(s){
+  const hs=activeHumans(s);
+  if(s.status==='roundEnd'&&hs.length&&hs.every(p=>s.ready&&s.ready[p.id]))return nextRound(s);
+  return false;
+}
+/* time ran out: draw if needed, then throw the drawn tile (the dealer's opening turn throws what a CPU would). Two in a row → 代打 */
+function autoMove(s,pid){
+  if(s.status!=='playing'||!s.players[s.turn]||s.players[s.turn].id!==pid)return false;
+  if(s.phase==='draw'){if(!doDraw(s,pid))return false;if(s.status!=='playing')return true}
+  if(s.phase!=='discard')return false;
+  const t=s.drawn!=null&&s.hands[pid].includes(s.drawn)?s.drawn:cpuChoose(s,pid).t;
+  if(!doDiscard(s,pid,t,false))return false;
+  s.log+='(時間切れ)';
+  const p=s.players.find(x=>x.id===pid);
+  if(p&&!p.cpu){p.to=(p.to||0)+1;if(p.to>=2&&!p.sub){p.sub=true;s.log+=`。${p.name} は代打CPUに交代`}}
+  return true;
+}
+/* back from 代打 (or any move of one's own clears the time-out count) */
+function backFromSub(s,pid){const p=s.players.find(x=>x.id===pid&&!x.cpu);if(!p||(!p.sub&&!p.to))return false;p.sub=false;p.to=0;return true}
+function goSub(s,pid){const p=s.players.find(x=>x.id===pid&&!x.cpu);if(!p||p.sub)return false;p.sub=true;checkAllReady(s);return true}
+/* someone watching takes over a CPU's seat mid-game: the seat keeps its hand, river and coins */
+function renameId(s,a,b){
+  const mv=o=>{if(o&&Object.prototype.hasOwnProperty.call(o,a)){o[b]=o[a];delete o[a]}};
+  [s.hands,s.rivers,s.riichi,s.reachAt,s.ippatsu,s.ready].forEach(mv);
+  if(s.vote)mv(s.vote.by);
+  if(s.rc)s.rc=s.rc.map(x=>x===a?b:x);
+  if(s.lastDiscard&&s.lastDiscard.pid===a)s.lastDiscard.pid=b;
+  if(s.result){if(s.result.winner===a)s.result.winner=b;if(s.result.from===a)s.result.from=b}
+  for(const h of s.history||[]){mv(h.d);mv(h.cl);if(h.w===a)h.w=b;if(h.from===a)h.from=b;if(h.rc)h.rc=h.rc.map(x=>x===a?b:x)}
+  for(const st of s.stamps||[]){if(st.p===a)st.p=b;if(st.to===a)st.to=b}
+  if(s.sad===a)s.sad=b;
+}
+function takeSeat(s,cpuId,np){
+  if(s.status!=='playing'&&s.status!=='roundEnd')return false;
+  const i=pIdx(s,cpuId);if(i<0||!s.players[i].cpu||!np||!np.id||s.players.some(p=>p.id===np.id))return false;
+  const old=s.players[i];renameId(s,cpuId,np.id);
+  s.players[i]=Object.assign({},np,{cpu:false,score:old.score,sub:false,to:0});
+  s.log=`${np.name} が ${old.name} の席を引き継いだ`;
+  return true;
+}
+/* 拍手 (for the winner) and どんまい (for whoever dealt in), counted per person for that round */
+const clip99=n=>Math.max(0,Math.min(99,n|0));
+function addClaps(s,rid,pid,c,d){
+  const h=(s.history||[]).find(x=>x.rid===rid);if(!h||!h.w||pid===h.w)return false;
+  const v=[clip99(c),h.from&&h.from!==pid?clip99(d):0];if(!v[0]&&!v[1])return false;
+  h.cl=h.cl||{};const cur=h.cl[pid];if(cur&&cur[0]>=v[0]&&cur[1]>=v[1])return false;
+  h.cl[pid]=[Math.max(v[0],cur?cur[0]:0),Math.max(v[1],cur?cur[1]:0)];return true;
+}
+function addCpuClaps(s,rid){
+  const h=(s.history||[]).find(x=>x.rid===rid);if(!h||!h.w)return false;let any=false;
+  for(const p of s.players){if(!p.cpu||p.id===h.w||(h.cl&&h.cl[p.id]))continue;
+    any=addClaps(s,rid,p.id,3+Math.floor(Math.random()*12),h.from&&h.from!==p.id?1+Math.floor(Math.random()*6):0)||any}
+  return any;
+}
+/* 因縁ボード: one record per group of people (CPUs are not part of the key) */
+function rivalKey(s){const ids=humans(s).map(p=>p.id).sort();return ids.length>=2?'r'+hashN(ids.join('|'),2147483647).toString(36)+ids.length:null}
+function rivalUpdate(doc,s,gameId){
+  const d=doc?JSON.parse(JSON.stringify(doc)):{};if(d.last===gameId)return null;
+  const hs=humans(s);d.ids=hs.map(p=>p.id).sort();d.names=Object.assign(d.names||{},Object.fromEntries(hs.map(p=>[p.id,p.name])));
+  d.games=(d.games||0)+1;
+  const top=[...s.players].sort((a,b)=>b.score-a.score)[0],fk=top.cpu?'cpu':top.id;
+  d.firsts=d.firsts||{};d.firsts[fk]=(d.firsts[fk]||0)+1;d.lastWin={id:fk,name:top.name};
+  d.hits=d.hits||{};d.wins=d.wins||{};
+  for(const h of s.history||[]){
+    const w=s.players.find(p=>p.id===h.w),f=s.players.find(p=>p.id===h.from);
+    if(w&&!w.cpu)d.wins[w.id]=(d.wins[w.id]||0)+1;
+    if(h.how==='ロン'&&w&&f&&!w.cpu&&!f.cpu){const k=f.id+'>'+w.id;d.hits[k]=(d.hits[k]||0)+1}
+  }
+  d.last=gameId;d.at=Date.now();return d;
+}
+/* みんなの殿堂: the 10 biggest hands ever, and who first made each 役 */
+function hallEntry(s){
+  const R=s.result,h=lastHist(s);if(!R||!R.winner||!h||!R.sets)return null;
+  const w=s.players.find(p=>p.id===R.winner);if(!w)return null;
+  const faces={};for(const x of R.sets)for(const t of x.tiles)if(isWild(t)){const o=s.players[t-900];if(o)faces[t]={id:o.id,name:o.name,av:o.av,fv:o.fv||null,cpu:!!o.cpu}}
+  return {k:h.rid,pts:R.points,name:w.name,id:w.id,cpu:!!w.cpu,av:w.av,fv:w.fv||null,how:R.how,yaku:R.yaku.map(y=>y[0]).slice(0,14),sets:R.sets.map(x=>({kind:x.kind,tiles:x.tiles})),faces,at:Date.now()};
+}
+function hallUpdate(doc,e,keys){
+  if(!e)return null;
+  const d=doc?JSON.parse(JSON.stringify(doc)):{};d.top=Array.isArray(d.top)?d.top:[];d.first=d.first||{};let ch=false;
+  if(e&&!d.top.some(x=>x.k===e.k)){const top=[...d.top,e].sort((a,b)=>b.pts-a.pts||a.at-b.at).slice(0,10);if(top.some(x=>x.k===e.k)){d.top=top;ch=true}}
+  for(const k of keys||[])if(!d.first[k]){d.first[k]={name:e.name,id:e.id,cpu:!!e.cpu,at:e.at};ch=true}
+  return ch?d:null;
 }
 
 /* ================= CPU ================= */
@@ -822,7 +1007,7 @@ const sortHand=h=>[...h].sort((a,b)=>a-b);
 let db=null,me=null,myName='',ref=null,unsub=null,state=null,sel=null,rooms=[],err='',busy=false,entering=false,writeBlocked=false;
 let BACKEND=null,backendErr='',invited=false;   // 'claude' inside claude.ai, 'firebase' on GitHub Pages
 let confirmLeave=false,copied=false,prefillCode='';
-const ui={rulesOpen:true,histOpen:false,handsOpen:false,rulesSheet:false,scoreSheet:false,stampTray:false,cpuPick:false,profOpen:false,sayOpen:false};
+const ui={rulesOpen:true,histOpen:false,handsOpen:false,rulesSheet:false,scoreSheet:false,stampTray:false,cpuPick:false,profOpen:false,sayOpen:false,voiceOpen:false,predTray:false,whisperTo:null,cheerTo:null};
 try{myName=localStorage.getItem('dj_name')||''}catch(e){}
 
 /* animation bookkeeping: things are animated only the first time this view sees them */
@@ -831,8 +1016,8 @@ const fx={deal:null,drawn:null,flashTurn:false,sheetLate:false};
 let tweens=[];const pendingFrom=new Map();
 let gateKey='',gateOpen=true,gateTimer=null,gateStart=0;
 
-function tileHTML(t,cls=''){
-  if(isWild(t)){const p=state&&state.players&&state.players[t-900];return `<span class="tile wild ${cls}" title="${esc(tileName(t))}(なんにでもなる)"><span class="face">${avInner(p)}</span></span>`}
+function tileHTML(t,cls='',owner){
+  if(isWild(t)){const p=owner||(state&&state.players&&state.players[t-900]),sad=!owner&&p&&state&&state.status==='playing'&&state.sad===p.id;return `<span class="tile wild ${cls}${sad?' sad':''}" title="${esc(owner?(owner.name||'')+'の顔パイ':tileName(t))}(なんにでもなる)"><span class="face">${avInner(p)}</span></span>`}
   const g=state&&state.gold===t?' goldt':'';
   return `<span class="tile c${tColor(t)} ${cls}${g}" title="${tileName(t)}${g?'・金のパイ':''}"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#ch${tChar(t)}"/></svg></span>`;
 }
@@ -925,7 +1110,7 @@ function cpuLine(s,p,kind,prob){
 }
 const BUBBLE_MS=2800,bubbles=new Map();
 function say(pid,text,kind,quiet){bubbles.set(pid,{text,at:Date.now(),kind});if(!quiet)speak(text,state&&state.players.find(x=>x.id===pid));setTimeout(()=>{const b=bubbles.get(pid);if(b&&Date.now()-b.at>=BUBBLE_MS){bubbles.delete(pid);render()}},BUBBLE_MS+80)}
-function bubbleHTML(pid){const b=bubbles.get(pid);if(!b)return '';const el=Date.now()-b.at;if(el>=BUBBLE_MS)return '';return `<span class="bubble${b.kind==='stamp'?' stamp':''}" style="animation-delay:-${el}ms">${esc(b.text)}</span>`}
+function bubbleHTML(pid){const b=bubbles.get(pid);if(!b)return '';const el=Date.now()-b.at;if(el>=BUBBLE_MS)return '';return `<span class="bubble${['stamp','whisper','cheer'].includes(b.kind)?' '+b.kind:''}" style="animation-delay:-${el}ms">${esc(b.text)}</span>`}
 function toast(text,p){
   const fxEl=$('#fx');if(!fxEl)return;let box=fxEl.querySelector('.toasts');
   if(!box){box=document.createElement('div');box.className='toasts';fxEl.appendChild(box)}
@@ -947,7 +1132,7 @@ function setAvatar(i){
   if(had)uploadFace();else syncProfile();render();
 }
 function avatarOf(p){if(!p)return 0;if(p.av>=0&&p.av<9)return p.av;if(p.cpu&&PERSONA[p.name])return PERSONA[p.name].av;return hashN(String(p.id),9)}
-function avHTML(p,cls){const fr=p&&p.fr>0&&p.fr<4?' fr'+p.fr:'';return `<span class="av${cls?' '+cls:''}${fr}" title="${esc(p&&p.name||CHARS[avatarOf(p)].n)}">${avInner(p)}</span>`}
+function avHTML(p,cls){const fr=p&&p.fr>0&&p.fr<4?' fr'+p.fr:'',sad=p&&state&&state.status==='playing'&&state.sad===p.id?' sad':'';return `<span class="av${cls?' '+cls:''}${fr}${sad}" title="${esc(p&&p.name||CHARS[avatarOf(p)].n)}">${avInner(p)}</span>`}
 
 /* ---- 役図鑑 (kept in this browser) and end-of-game titles ---- */
 const ZUKAN=[['リーチ','リーチしてあがる'],['一発','リーチしてすぐあがる'],['ラスト1枚','最後の1枚であがる'],['ラッキー','ラッキーキャラ入りであがる'],['キャラそろい','3セットともキャラ'],['ぜんぶ色枠','3セットとも色枠'],['チーム同色','チームの3キャラを同じ色枠で'],['化かし合い','たぬき＋きつね'],['海の幸','たこ＋ふぐ'],['夜道','ちょうちん＋からかさ'],['にらめっこ','ふくろう＋ひとつめ'],['オール森のなかま','9枚とも森のなかま'],['オール海のなかま','9枚とも海のなかま'],['オール夜のおばけ','9枚とも夜のおばけ'],['森の大集合','森の大役'],['海の大集合','海の大役'],['百鬼夜行','夜の大役'],['親の配牌あがり','親が最初の9枚で'],['金のパイ','金色の牌入りであがる'],['倍々ドンジャラ','倍々の局であがる'],['じぶん大好き','自分の顔パイであがる'],['ともだちパワー','人の顔パイであがる']];
@@ -967,18 +1152,26 @@ function zukanHTML(){
   return `<section class="panel"><div class="ph"><h2>役図鑑</h2><span class="chip"><b>${got}</b>/${ZUKAN.length}</span></div>
    <p class="msg">あなたの称号 <b>${esc(myTitle())}</b>・アイコンの枠 <b>${frameName}</b>${next?`(あと${next-got}種で次の枠)`:''}</p>
    <p class="msg">対局 ${fmtN(st.games||0)}回・あがり ${fmtN(st.wins||0)}回・優勝 ${fmtN(st.firsts||0)}回・最高 ${fmtN(st.best||0)}点(この端末に保存)</p>
-   <div class="zukan">${ZUKAN.map(([n,d])=>{const c=z[n]||0;return `<div class="zk${c?' got':''}"><b>${c?esc(n):'？？？'}</b><small>${c?`${c}回`:esc(d)}</small></div>`}).join('')}</div></section>`;
+   <div class="zukan">${ZUKAN.map(([n,d])=>{const c=z[n]||0,f=hall&&hall.first&&hall.first[n];return `<div class="zk${c?' got':''}"><b>${c?esc(n):'？？？'}</b><small>${c?`${c}回`:esc(d)}</small>${f?`<small class="zk-f">最初に出した人：${esc(f.name)}</small>`:''}</div>`}).join('')}</div></section>`;
 }
-function awards(s){
+function predHits(s,fans){
+  const out=new Map(),H=(s.history||[]).filter(h=>h.rid&&h.w);
+  for(const f of fans||[]){if(!f||!f.preds)continue;let n=0;for(const h of H)if(f.preds[h.rid]===h.w)n++;if(n)out.set(f.id,{n,f})}
+  return out;
+}
+function awards(s,fans){
   const H=s.history||[],P=s.players,out=[];
   const tally=f=>{const m={};P.forEach(p=>m[p.id]=0);H.forEach(h=>f(h,m));return m};
-  const tops=m=>{const best=Math.max(0,...Object.values(m));return best?P.filter(p=>m[p.id]===best):[]};
+  const tops=(m,pool)=>{const L=pool||P,best=Math.max(0,...L.map(p=>m[p.id]||0));return best?L.filter(p=>m[p.id]===best):[]};
   const wins=tally((h,m)=>{if(h.w in m)m[h.w]++}),rc=tally((h,m)=>(h.rc||[]).forEach(id=>{if(id in m)m[id]++})),hit=tally((h,m)=>{if(h.from in m)m[h.from]++});
   let big=null;H.forEach(h=>{if(h.w&&h.pts&&(!big||h.pts>big.pts))big=h});
   const a=tops(wins);if(a.length)out.push(['あがり王',a,`${wins[a[0].id]}回あがり`]);
   if(big){const p=P.find(x=>x.id===big.w);if(p)out.push(['最高打点',[p],`${fmtN(big.pts)}点`])}
   const b=tops(rc);if(b.length)out.push(['リーチ王',b,`${rc[b[0].id]}回リーチ`]);
   const c=tops(hit);if(c.length)out.push(['ふりこみ王',c,`${hit[c[0].id]}回ふりこみ`]);
+  const cl=tally((h,m)=>{for(const id in h.cl||{})if(id in m){const v=h.cl[id];m[id]+=(v[0]||0)+(v[1]||0)}});
+  const d=tops(cl,P.filter(p=>!p.cpu));if(d.length)out.push(['盛り上げ王',d,`拍手 ${cl[d[0].id]}回`]);
+  const ph=predHits(s,fans);if(ph.size){const best=Math.max(...[...ph.values()].map(x=>x.n));out.push(['予想王',[...ph.values()].filter(x=>x.n===best).map(x=>({id:x.f.id,name:x.f.name,av:x.f.av,fv:x.f.fv,cpu:false})),`${best}回的中`])}
   return out;
 }
 
@@ -1044,8 +1237,8 @@ function uploadFace(){
   }).catch(()=>{});
   return faceChain;
 }
-function profile(){return {av:myAv,fv:faceUp&&myImg?faceVer(myImg):null,say:{r:mySay.r||'',w:mySay.w||''},ttl:myTitle(),fr:myFrame()}}
-const profSame=(p,q)=>JSON.stringify([p.av,p.fv||null,p.say||null,p.ttl||null,p.fr||0])===JSON.stringify([q.av,q.fv,q.say,q.ttl,q.fr]);
+function profile(){return {av:myAv,fv:faceUp&&myImg?faceVer(myImg):null,vv:voiceUp?voiceVer():null,say:{r:mySay.r||'',w:mySay.w||''},ttl:myTitle(),fr:myFrame()}}
+const profSame=(p,q)=>JSON.stringify([p.av,p.fv||null,p.vv||null,p.say||null,p.ttl||null,p.fr||0])===JSON.stringify([q.av,q.fv,q.vv,q.say,q.ttl,q.fr]);
 function syncProfile(){
   if(!ref||!state||!state.players.some(p=>p.id===me&&!p.cpu))return;
   mutate(x=>{const p=x.players.find(q=>q.id===me);if(!p)return false;const np=profile();if(profSame(p,np))return false;Object.assign(p,np)}).then(()=>render());
@@ -1107,8 +1300,317 @@ function profileHTML(){
     :`<button class="avb add" id="photoBtn" aria-label="写真を使う" title="写真を使う"><span>＋<br>写真</span></button>`;
   const chars=CHARS.map((c,i)=>`<button class="avb" data-av="${i}" aria-pressed="${!myImg&&myAv===i}" aria-label="${esc(c.n)}" title="${esc(c.n)}"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#ch${i}"/></svg></button>`).join('');
   return `<div class="avs" role="group" aria-label="アイコン">${photo}${chars}</div><input type="file" id="photoFile" accept="image/*" hidden>${myImg?'<div class="row"><button class="ghost small" id="photoClear">写真をやめる</button><span class="msg">写真は顔パイにも出る</span></div>':''}
-  <details class="says" data-ui="sayOpen"${ui.sayOpen?' open':''}><summary>決めゼリフ(なくてもOK)</summary><div class="sayrow"><label class="label" for="sayR">リーチのとき</label><input id="sayR" maxlength="16" placeholder="例：いくぞー！" value="${esc(mySay.r)}"></div><div class="sayrow"><label class="label" for="sayW">あがったとき</label><input id="sayW" maxlength="16" placeholder="例：いただきます！" value="${esc(mySay.w)}"></div><button class="ghost small" id="sayTest">声で聞いてみる</button></details>`;
+  <details class="says" data-ui="sayOpen"${ui.sayOpen?' open':''}><summary>決めゼリフ(なくてもOK)</summary><div class="sayrow"><label class="label" for="sayR">リーチのとき</label><input id="sayR" maxlength="16" placeholder="例：いくぞー！" value="${esc(mySay.r)}"></div><div class="sayrow"><label class="label" for="sayW">あがったとき</label><input id="sayW" maxlength="16" placeholder="例：いただきます！" value="${esc(mySay.w)}"></div><button class="ghost small" id="sayTest">声で聞いてみる</button></details>${canRec()?voiceRecHTML():''}`;
 }
+function voiceRecHTML(){
+  const row=(k,label)=>`<div class="vrow"><span class="vl">${label}</span><button class="ghost small${recBusy===k?' rec':''}" data-rec="${k}" ${recBusy?'disabled':''}>${recBusy===k?'● 録音中…':myVoice[k]?'● 録り直す':'● 録る'}</button>${myVoice[k]?`<button class="ghost small" data-vplay="${k}" aria-label="${label}の声を聞く">▶ 聞く</button><button class="ghost small" data-vdel="${k}">消す</button>`:'<span class="msg">まだなし</span>'}</div>`;
+  return `<details class="says" data-ui="voiceOpen"${ui.voiceOpen?' open':''}><summary>声スタンプ(自分の声でリーチ・あがり)</summary>${row('r','リーチ')}${row('w','あがり')}<p class="msg hint">押すと2秒だけ録音する。リーチやあがりのとき、みんなの画面でその声が鳴る</p></details>`;
+}
+
+/* ---- v9: playing online together ---- */
+const CLAP_MS=3500,VOTE_MS=6000,AFK_SEC=90,PRED_LAPS=2;
+const WHISPERS=['その牌あぶないよ','もうすぐあがる','それ待ってた','なにも待ってない','ここだけの話…','うそだよ'];
+const CHEERS=['がんばれ！','いけー！','ナイス！','おしい！','すごい！','どんまい！'];
+const safeSeg=id=>/^[A-Za-z0-9_.~:@+-]{1,150}$/.test(String(id))?String(id):'h'+hashN(String(id),2147483647).toString(36);
+let fans=[],fanUnsub=null,fanCode=null,primedFans=false,myFan=null,fanBeat=null,fanChain=Promise.resolve();
+let hall=null;const rivalCache=new Map(),rivalLoading=new Set();
+/* clocks are measured from when THIS screen first saw the turn, so devices with different clocks agree well enough */
+const turnSeen=new Map();
+function seenAt(k){if(!turnSeen.has(k)){turnSeen.set(k,Date.now());if(turnSeen.size>300)turnSeen.delete(turnSeen.keys().next().value)}return turnSeen.get(k)}
+const timerSec=s=>{const t=s&&s.opts&&s.opts.timer;return t===0?0:t===30?30:15};
+const turnKey=s=>`${s.roundId}:${s.turn}:${riverCount(s)}:${s.phase==='vote'?'v':'p'}`;
+function clockLeft(s){   // [ms left, ms total] for the running clock, or null
+  if(!s||s.status!=='playing')return null;
+  if(s.phase==='vote')return [VOTE_MS-(Date.now()-seenAt('v:'+s.roundId)),VOTE_MS];
+  const cur=s.players[s.turn];if(!cur||isAuto(cur)||!timerSec(s))return null;
+  const T=timerSec(s)*1000;return [T-(Date.now()-seenAt(turnKey(s))),T];
+}
+const predOpen=s=>!!s&&s.status==='playing'&&(s.phase==='vote'||riverCount(s)<s.players.length*PRED_LAPS);
+const watchers=()=>fans.filter(f=>!f.play&&Date.now()-(f.at||0)<6*60e3&&!(state&&state.players.some(p=>p.id===f.id&&!p.cpu)));
+function fanBase(){const code=state&&state.code;if(myFan&&myFan.code===code)return myFan;const f=fans.find(x=>x.id===me);return f?Object.assign({},f,{code}):null}
+function myPredFor(s){const f=fanBase();return f&&f.preds?f.preds[s.roundId]||null:null}
+
+/* ---- people watching: one small document per person per room ---- */
+function subscribeFans(code){
+  if(fanUnsub){try{fanUnsub()}catch(e){}fanUnsub=null}
+  fans=[];fanCode=code;primedFans=false;
+  try{fanUnsub=db.collection(`rooms/${code}/fans`).onSnapshot(q=>{
+    if(fanCode!==code)return;
+    const old=fans;fans=q.docs.map(d=>d.data()).filter(f=>f&&typeof f.id==='string'&&typeof f.name==='string').slice(0,40);
+    fanEvents(old,fans);loadFaces({players:fans.map(f=>({id:f.id,fv:f.fv,cpu:false}))});
+    if(state)render();
+  },()=>{})}catch(e){}
+}
+function fanWrite(patch){
+  if(!db||!state)return Promise.resolve(false);
+  const code=state.code,meP=state.players.find(p=>p.id===me&&!p.cpu),base=fanBase()||{};
+  myFan=Object.assign({preds:{}},base,patch,{id:me,name:(meP&&meP.name)||myName||'観戦の人',av:myAv,fv:faceUp&&myImg?faceVer(myImg):null,play:patch&&patch.play!==undefined?!!patch.play:!!meP,code,at:Date.now()});
+  const ks=Object.keys(myFan.preds||{});if(ks.length>12)for(const k of ks.slice(0,ks.length-12))delete myFan.preds[k];
+  const body=JSON.parse(JSON.stringify(myFan));delete body.code;
+  const path=`rooms/${code}/fans/${safeSeg(me)}`;
+  fanChain=fanChain.then(()=>db.doc(path).set(body)).then(()=>true,e=>{err=writeErr(e,'観戦の記録を送れなかった');render();return false});
+  return fanChain;
+}
+function startFanBeat(){clearInterval(fanBeat);fanBeat=setInterval(()=>{if(state&&!state.players.some(p=>p.id===me&&!p.cpu))fanWrite({})},120000)}
+async function fanLeave(code){
+  clearInterval(fanBeat);fanBeat=null;
+  const f=fanBase();if(!code||!f||f.play)return;
+  try{await db.doc(`rooms/${code}/fans/${safeSeg(me)}`).delete()}catch(e){}
+}
+function fanEvents(o,n){
+  for(const f of n){
+    const c=f.cheer;
+    if(c&&c.i){const k='ch:'+f.id+':'+c.i;if(!seen.has(k)){seen.add(k);
+      const text=CHEERS[c.k],to=state&&state.players.find(p=>p.id===c.to);
+      if(primedFans&&text&&to&&Date.now()-(c.t||0)<20000&&f.id!==me){say(to.id,`👀${f.name}「${text}」`,'cheer',true);sfx('stamp');if(to.id===me)toast(`${f.name}(観戦)から応援：${text}`,f)}}}
+    const cl=f.cl;
+    if(cl&&cl.rid){const k='fcl:'+f.id+':'+cl.rid+':'+cl.c+':'+cl.d;if(!seen.has(k)){seen.add(k);const h=lastHist(state);if(primedFans&&h&&h.rid===cl.rid&&f.id!==me)clapFx((cl.c||0)+(cl.d||0))}}
+  }
+  primedFans=true;
+}
+function watchRoom(code){saveName();err='';enter(code)}
+function predict(pid){
+  const s=state;if(!s||!predOpen(s)||!s.players.some(p=>p.id===pid))return;
+  if(s.players.some(p=>p.id===me&&!p.cpu)&&pid===me)return;
+  const f=fanBase(),preds=Object.assign({},f&&f.preds||{});preds[s.roundId]=pid;ui.predTray=false;
+  fanWrite({preds});sfx('tick');render();
+}
+function sendCheer(k){
+  const s=state;if(!s||!CHEERS[k]||Date.now()-lastStamp<1500)return;lastStamp=Date.now();
+  const to=ui.cheerTo&&s.players.some(p=>p.id===ui.cheerTo)?ui.cheerTo:(s.players[s.turn]||s.players[0]).id;
+  fanWrite({cheer:{i:rid(),k,t:Date.now(),to}});say(to,`👀あなた「${CHEERS[k]}」`,'cheer',true);sfx('stamp');render();
+}
+
+/* ---- whispers: a stamp only one person can read ---- */
+function sendWhisper(to,k){
+  if(!ref||!state||!WHISPERS[k]||Date.now()-lastStamp<1500)return;
+  if(!state.players.some(p=>p.id===to&&!p.cpu&&p.id!==me))return;
+  lastStamp=Date.now();ui.stampTray=false;ui.whisperTo=null;
+  mutate(x=>{if(!x.players.some(p=>p.id===me&&!p.cpu))return false;x.stamps=(x.stamps||[]).slice(-7);x.stamps.push({i:rid(),p:me,k,t:Date.now(),to,w:1})}).then(()=>render());
+  render();
+}
+
+/* ---- claps: everyone taps for 3.5 s when someone wins; one write each at the end ---- */
+let clapSt=null,applauseAt=0;
+SFX.clap=t=>{noise(t,.035,.55,1800,.9);noise(t+.01,.05,.35,900,1.1)};
+SFX.applause=t=>{for(let i=0;i<14;i++)noise(t+i*.045+Math.random()*.03,.04,.25+Math.random()*.2,1200+Math.random()*1600,1)};
+SFX.whisper=t=>{noise(t,.18,.12,4200,3);tone(NOTE(84),t+.05,.12,'sine',.04)};
+SFX.vote=t=>arp(t,[72,79,84],.07,.18,'triangle',.1);
+SFX.hurry=t=>tone(NOTE(96),t,.05,'square',.04);
+function spawnEmoji(ch,x,y){
+  if(RM)return;const fxEl=$('#fx');if(!fxEl)return;const e=document.createElement('span');e.className='emo';e.textContent=ch;
+  e.style.left=(x-10+Math.random()*20)+'px';e.style.top=(y-10)+'px';e.style.setProperty('--dx',(Math.random()*60-30)+'px');fxEl.appendChild(e);setTimeout(()=>e.remove(),1100);
+}
+function clapFx(n){
+  if(!n)return;
+  if(Date.now()-applauseAt>900){applauseAt=Date.now();sfx('applause')}
+  if(RM)return;const w=innerWidth,h=innerHeight;
+  for(let i=0;i<Math.min(14,2+Math.ceil(n/3));i++)setTimeout(()=>spawnEmoji('👏',w*.15+Math.random()*w*.7,h*.35+Math.random()*h*.3),i*60);
+}
+function startClaps(s){
+  const R=s.result,h=lastHist(s);if(!R||!R.winner||!h||!h.rid)return;
+  const meP=s.players.find(p=>p.id===me&&!p.cpu),host=s.hostId===me;
+  if(R.winner===me){if(host)setTimeout(()=>sendClaps(h.rid,0,0,false),CLAP_MS+200);return}
+  clapSt={rid:h.rid,c:0,d:0,from:R.from&&R.from!==me?R.from:null,winner:R.winner,fan:!meP};
+  showClapBar(s);
+  setTimeout(()=>{const st=clapSt;clapSt=null;hideClapBar();if(st&&st.rid===h.rid)sendClaps(st.rid,st.c,st.d,st.fan)},CLAP_MS);
+}
+function sendClaps(rid,c,d,fan){
+  if(fan){if(c||d)fanWrite({cl:{rid,c:clip99(c),d:clip99(d)}});return}
+  if(!state||!ref)return;
+  if(!c&&!d&&state.hostId!==me)return;
+  mutate(x=>{let ch=addClaps(x,rid,me,c,d);if(x.hostId===me)ch=addCpuClaps(x,rid)||ch;return ch?undefined:false});
+}
+function showClapBar(s){
+  hideClapBar();const fxEl=$('#fx');if(!fxEl||!clapSt)return;
+  const w=s.players.find(p=>p.id===clapSt.winner),f=clapSt.from?s.players.find(p=>p.id===clapSt.from):null;
+  const el=document.createElement('div');el.className='clapbar';el.style.setProperty('--ms',CLAP_MS+'ms');
+  el.innerHTML=`<p>連打して盛り上げよう！</p><div class="cbtns"><button class="clapb" data-k="c" id="clapW">👏 ${esc(w?w.name:'')}に拍手 <b>0</b></button>${f?`<button class="clapb dm" data-k="d" id="clapD">🤝 ${esc(f.name)}にどんまい <b>0</b></button>`:''}</div><i class="cbar"></i>`;
+  el.querySelectorAll('.clapb').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();tapClap(b.dataset.k,b)});b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tapClap(b.dataset.k,b)}})});
+  fxEl.appendChild(el);
+}
+function hideClapBar(){const el=document.querySelector('#fx .clapbar');if(el)el.remove()}
+function tapClap(k,b){
+  const st=clapSt;if(!st)return;const now=Date.now();if(st.last&&now-st.last<25)return;st.last=now;
+  if(k==='c'){if(st.c<99)st.c++}else if(st.d<99)st.d++;
+  const n=b.querySelector('b');if(n)n.textContent=k==='c'?st.c:st.d;
+  sfx('clap');buzz(6);const r=b.getBoundingClientRect();spawnEmoji(k==='c'?'👏':'🤝',r.left+r.width*Math.random(),r.top);
+}
+function clapSum(s){
+  const h=lastHist(s);if(!h||!h.w)return null;let c=0,d=0;const who=[];
+  for(const [id,v] of Object.entries(h.cl||{})){c+=v[0]||0;d+=v[1]||0;if(v[0])who.push([pName(s,id),v[0]])}
+  for(const f of fans)if(f.cl&&f.cl.rid===h.rid&&!s.players.some(p=>p.id===f.id)){c+=f.cl.c||0;d+=f.cl.d||0;if(f.cl.c)who.push(['👀'+f.name,f.cl.c])}
+  return {c,d,who:who.sort((a,b)=>b[1]-a[1])};
+}
+
+/* ---- 因縁ボード / 殿堂: small shared documents updated once per game / per win ---- */
+async function txDoc(path,fn){
+  if(!db)return false;
+  if(db.runTx){try{return await db.runTx(path,cur=>fn(cur)||null,{create:true})}catch(e){return false}}
+  const r=db.doc(path);
+  for(let i=0;i<8;i++){
+    let lease;try{lease=await r.acquire({holder:me,ttlMs:1500})}catch(e){return false}
+    if(!lease.acquired){await sleep(200+Math.random()*300);continue}
+    try{const sn=await r.get(),next=fn(sn.exists?structuredClone(sn.data()):null);if(!next)return false;await r.set(next);return true}catch(e){return false}
+  }
+  return false;
+}
+function rivalFor(s){
+  const k=rivalKey(s);if(!k||!db)return null;
+  if(!rivalCache.has(k)&&!rivalLoading.has(k)){rivalLoading.add(k);
+    Promise.resolve().then(()=>db.doc('rivals/'+k).get()).then(sn=>{rivalCache.set(k,sn&&sn.exists?sn.data():{});rivalLoading.delete(k);render()},()=>{rivalLoading.delete(k)})}
+  return rivalCache.get(k)||null;
+}
+function writeRival(s){
+  const k=rivalKey(s),gid=s.roundId;if(!k||s.status!=='gameEnd')return;
+  txDoc('rivals/'+k,cur=>rivalUpdate(cur,s,gid)).then(()=>db.doc('rivals/'+k).get()).then(sn=>{if(sn&&sn.exists){rivalCache.set(k,sn.data());render()}}).catch(()=>{});
+}
+function writeHall(s){
+  const e=hallEntry(s);if(!e)return;
+  const keys=[...new Set((s.result.yaku||[]).map(y=>zkKey(y[0])).filter(k=>ZUKAN.some(z=>z[0]===k)))];
+  const known=hall&&Array.isArray(hall.top)&&(hall.top.some(x=>x.k===e.k)||(hall.top.length>=10&&e.pts<=hall.top[9].pts));
+  if(known&&keys.every(k=>hall.first&&hall.first[k]))return;   // nothing new to add
+  txDoc('hall/top',cur=>hallUpdate(cur,e,keys));
+}
+/* who writes shared records: the winner (or the host for CPUs / 代打), others only later as a fallback */
+function writerDelay(s,ownerId){
+  const hs=activeHumans(s),rank=Math.max(0,hs.findIndex(p=>p.id===me));
+  if(ownerId===me)return 600;if(s.hostId===me)return 1500;return 5000+rank*1500;
+}
+
+/* ---- voice stamps (GitHub version): 2 seconds from the mic, kept as a tiny 8 kHz WAV ---- */
+const validWav=v=>typeof v==='string'&&v.length<=24000&&/^data:audio\/wav;base64,[A-Za-z0-9+/]+=*$/.test(v);
+const canRec=()=>BACKEND==='firebase'&&!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)&&!!(window.AudioContext||window.webkitAudioContext);
+let myVoice={r:'',w:''},myVoiceBuf={r:null,w:null},voiceUp=false,voiceChain=Promise.resolve(),recBusy=null;
+try{const v=JSON.parse(localStorage.getItem('dj_vs')||'{}')||{};for(const k of ['r','w'])if(validWav(v[k]))myVoice[k]=v[k]}catch(e){}
+const voiceVer=()=>(myVoice.r||myVoice.w)?hashN(myVoice.r+'|'+myVoice.w,2147483647).toString(36)+'-'+(myVoice.r.length+myVoice.w.length).toString(36):null;
+function encodeWav(pcm,rate){
+  const R=8000,ratio=rate/R,n=Math.floor(pcm.length/ratio);if(n<800)return null;
+  const out=new Float32Array(n);
+  for(let i=0;i<n;i++){const a=Math.floor(i*ratio),b=Math.min(pcm.length,Math.floor((i+1)*ratio));let t=0;for(let j=a;j<b;j++)t+=pcm[j];out[i]=b>a?t/(b-a):0}
+  let peak=0;for(let i=0;i<n;i++)peak=Math.max(peak,Math.abs(out[i]));if(peak<.01)return null;
+  const th=peak*.08;let st=0,en=n;while(st<n&&Math.abs(out[st])<th)st++;while(en>st&&Math.abs(out[en-1])<th)en--;
+  st=Math.max(0,st-480);en=Math.min(n,en+960);const len=en-st,g=.92/peak;
+  const buf=new Uint8Array(44+len),dv=new DataView(buf.buffer),wr=(o,x)=>{for(let i=0;i<x.length;i++)buf[o+i]=x.charCodeAt(i)};
+  wr(0,'RIFF');dv.setUint32(4,36+len,true);wr(8,'WAVE');wr(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);
+  dv.setUint32(24,R,true);dv.setUint32(28,R,true);dv.setUint16(32,1,true);dv.setUint16(34,8,true);wr(36,'data');dv.setUint32(40,len,true);
+  for(let i=0;i<len;i++){const v=Math.max(-1,Math.min(1,out[st+i]*g));buf[44+i]=Math.round(v*127+128)}
+  let bin='';for(let i=0;i<buf.length;i+=8192)bin+=String.fromCharCode.apply(null,buf.subarray(i,i+8192));
+  return 'data:audio/wav;base64,'+btoa(bin);
+}
+function decodeWav(url){
+  const c=actx();if(!c||!validWav(url))return Promise.resolve(null);
+  const b=atob(url.slice(url.indexOf(',')+1)),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
+  return new Promise(res=>{try{const pr=c.decodeAudioData(u.buffer,res,()=>res(null));if(pr&&pr.catch)pr.catch(()=>res(null))}catch(e){res(null)}});
+}
+async function recordVoice(slot){
+  if(recBusy||!canRec())return;recBusy=slot;err='';render();
+  let stream=null;
+  try{
+    const ctx=actx();if(!ctx)throw new Error('audio');
+    stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+    const src=ctx.createMediaStreamSource(stream),proc=ctx.createScriptProcessor(4096,1,1),mute=ctx.createGain(),chunks=[];
+    mute.gain.value=0;
+    await new Promise(res=>{   // 2 seconds of sound (counted in samples, not by the clock)
+      const need=ctx.sampleRate*2;let got=0;
+      proc.onaudioprocess=e=>{const d=new Float32Array(e.inputBuffer.getChannelData(0));chunks.push(d);got+=d.length;if(got>=need)res()};
+      src.connect(proc);proc.connect(mute);mute.connect(ctx.destination);setTimeout(res,6000);
+    });
+    proc.onaudioprocess=null;
+    try{proc.disconnect();src.disconnect();mute.disconnect()}catch(e){}
+    const pcm=new Float32Array(chunks.reduce((n,c)=>n+c.length,0));let o=0;for(const c of chunks){pcm.set(c,o);o+=c.length}
+    const url=encodeWav(pcm,ctx.sampleRate);
+    if(!url)err='声が小さすぎたみたい。もう一度録ってね';
+    else{myVoice[slot]=url;try{localStorage.setItem('dj_vs',JSON.stringify(myVoice))}catch(e){}myVoiceBuf[slot]=await decodeWav(url);voiceUp=false;uploadVoice();playVoice({id:me},slot,true)}
+  }catch(e){err='マイクが使えなかった。ブラウザのマイクの許可を確認してね'}
+  finally{if(stream)stream.getTracks().forEach(t=>t.stop());recBusy=null;render()}
+}
+function dropVoice(slot){myVoice[slot]='';myVoiceBuf[slot]=null;try{localStorage.setItem('dj_vs',JSON.stringify(myVoice))}catch(e){}voiceUp=false;uploadVoice();render()}
+function uploadVoice(){
+  voiceChain=voiceChain.then(async()=>{
+    if(!db||!me||BACKEND!=='firebase')return;
+    const r=db.doc('voices/'+safeSeg(me)),v=voiceVer();
+    try{
+      if(!v){voiceUp=false;try{await r.delete()}catch(e){}}
+      else{
+        let same=false;try{const sn=await r.get(),d=sn&&sn.exists?sn.data():null;same=!!(d&&d.v===v)}catch(e){}
+        if(!same)await r.set({r:myVoice.r,w:myVoice.w,v,updatedAt:Date.now()});
+        voiceUp=voiceVer()===v;
+      }
+    }catch(e){voiceUp=false;err=e&&/permission/.test(String(e.code||''))?'声をみんなに送れなかった。Firebase のルールを新しい firestore.rules に貼りかえてね':'声をみんなに送れなかった。少しあとでもう一度試してね'}
+    syncProfile();render();
+  }).catch(()=>{});
+  return voiceChain;
+}
+const voiceCache=new Map(),voiceTry=new Map();
+function loadVoicesOf(s){
+  if(!db||BACKEND!=='firebase'||!s||!Array.isArray(s.players))return;
+  for(const p of s.players){
+    if(p.cpu||p.id===me||typeof p.vv!=='string'||!p.vv)continue;
+    const c=voiceCache.get(p.id);if(c&&c.v===p.vv)continue;
+    const key=p.id+'|'+p.vv,t=voiceTry.get(key)||{n:0,busy:false,at:0};
+    if(t.busy||t.n>=5||Date.now()-t.at<3000)continue;
+    t.busy=true;t.n++;t.at=Date.now();voiceTry.set(key,t);
+    const vv=p.vv,id=p.id;
+    Promise.resolve().then(()=>db.doc('voices/'+safeSeg(id)).get()).then(async sn=>{
+      const d=sn&&sn.exists?sn.data():null;
+      if(d&&d.v===vv){voiceCache.set(id,{v:vv,r:validWav(d.r)?await decodeWav(d.r):null,w:validWav(d.w)?await decodeWav(d.w):null});return}
+      if(t.n<5)setTimeout(()=>loadVoicesOf(state),3500);
+    },()=>{}).finally(()=>{t.busy=false});
+  }
+}
+function playVoice(p,slot,force){   // true when a recorded voice played (then no read-aloud)
+  if(!p||(!force&&(!SND.on||!VOICE.on)))return false;
+  let buf=null;
+  if(p.id===me)buf=myVoice[slot]?myVoiceBuf[slot]:null;
+  else{const c=voiceCache.get(p.id);if(c&&c.v===p.vv)buf=c[slot]}
+  const ctx=SND.ctx;if(!buf||!ctx||ctx.state!=='running')return false;
+  try{const src=ctx.createBufferSource(),g=ctx.createGain();src.buffer=buf;g.gain.value=1.6;src.connect(g);g.connect(SND.out);src.start();return true}catch(e){return false}
+}
+
+/* ---- Claude 実況 (claude.ai version): anyone can ask for a play-by-play line; it is stored for everyone ---- */
+let sampleNS,aiOff=false;
+async function sampleApi(){if(sampleNS!==undefined)return sampleNS;try{sampleNS=window.claude&&window.claude.use?await window.claude.use('sample'):null}catch(e){sampleNS=null}return sampleNS}
+const aiReady=()=>BACKEND==='claude'&&!!sampleNS&&!aiOff;
+function aiPrompt(s,end){
+  const P=s.players,rank=[...P].sort((a,b)=>b.score-a.score).map((p,i)=>`${i+1}位 ${p.name}${p.cpu?'(CPU)':''} ${fmtN(p.score)}`).join(' / ');
+  const head='あなたはテレビのドンジャラ実況アナウンサー。ドンジャラは子ども向けの麻雀風ゲームで、9枚で3セットそろえるとあがり。名前には「選手」をつけて呼ぶ。悪口や下品な言葉は使わない。実況の文だけを書く(前置きや記号の飾りはなし)。';
+  if(end){
+    const H=(s.history||[]).map(h=>h.w?`第${h.r}局 ${pName(s,h.w)}の${h.how}(${fmtN(h.pts)}点${h.from?'、'+pName(s,h.from)+'がふりこみ':''})`:`第${h.r}局 流局`).join('。');
+    return `${head}\n対局が終わった。全体をふりかえる総評を、元気よく3文・120文字以内で。\n局ごと: ${H}\n最終順位: ${rank}`;
+  }
+  const R=s.result||{},ev=eventInfo(s);
+  const y=(R.yaku||[]).map(x=>x[0]).join('、');
+  return `${head}\nいま終わった1局を、元気よく2文・80文字以内で実況して。\n結果: ${pName(s,R.winner)}の${R.how}${R.from?`(${pName(s,R.from)}の捨て牌)`:''}、${fmtN(R.points)}点。役: ${y}。${ev?'お題: '+ev[0]+'。':''}${s.riichi&&s.riichi[R.winner]?'リーチしていた。':''}\n今の順位: ${rank}`;
+}
+async function askAi(end){
+  const s=state;if(!s||!aiReady())return;
+  const h=lastHist(s);if(end?s.cmEnd||s.status!=='gameEnd':(!h||!h.w||h.cm||s.status!=='roundEnd'))return;
+  const key=end?'end':h.rid;
+  // mark it first so two people don't spend twice
+  const claimed=await mutate(x=>{if(end){if(x.status!=='gameEnd'||x.cmEnd||(x.cmBy&&Date.now()-(x.cmAt||0)<60000))return false;x.cmBy=me;x.cmAt=Date.now();return}
+    const hh=(x.history||[]).find(z=>z.rid===key);if(!hh||hh.cm||(hh.cmBy&&Date.now()-(hh.cmAt||0)<60000))return false;hh.cmBy=me;hh.cmAt=Date.now()});
+  if(!claimed)return;
+  const sm=await sampleApi();
+  let text='';
+  try{const r=await sm(aiPrompt(state||s,end),{modelTier:'quick'});text=String(r&&r.text||'').replace(/\s+/g,' ').trim().slice(0,160)}
+  catch(e){const c=e&&e.code;if(['not_granted','sampling_disabled','not_declared','capability_disabled','capability_removed'].includes(c)){aiOff=true;toast('Claude実況はこの画面では使えなかった');render()}else if(c==='rate_limited')toast('いまは実況できない(Claudeの利用上限)。少し待ってね');else toast('実況がうまくいかなかった')}
+  await mutate(x=>{if(end){if(x.cmBy!==me)return false;if(text)x.cmEnd=text;delete x.cmBy;delete x.cmAt;return}
+    const hh=(x.history||[]).find(z=>z.rid===key);if(!hh||hh.cmBy!==me)return false;if(text)hh.cm=text;delete hh.cmBy;delete hh.cmAt});
+}
+
+/* ---- clocks on screen: a light updater instead of re-rendering every second ---- */
+let lastHurry=-1;
+function tickClocks(){
+  const s=state,cl=clockLeft(s),els=document.querySelectorAll('[data-clock]');
+  if(!cl){els.forEach(e=>e.hidden=true);lastHurry=-1;return}
+  const [left,T]=cl,sec=Math.max(0,Math.ceil(left/1000));
+  els.forEach(e=>{e.hidden=false;e.style.setProperty('--p',Math.max(0,Math.min(1,left/T)).toFixed(3));const b=e.querySelector('b');if(b)b.textContent=sec;e.classList.toggle('low',sec<=5)});
+  const mine=s.phase!=='vote'&&s.players[s.turn]&&s.players[s.turn].id===me;
+  if(mine&&sec<=5&&sec>0&&sec!==lastHurry){lastHurry=sec;sfx('hurry');if(sec<=3)buzz(15)}
+}
+setInterval(tickClocks,250);
+const clockHTML=cls=>`<span class="clock ${cls||''}" data-clock hidden><b></b></span>`;
 
 /* ---- effects ---- */
 function banner(main,sub,p){
@@ -1151,20 +1653,38 @@ function detectEvents(o,s){
     for(const st of s.stamps||[])seen.add('st:'+st.i);
     primed=true;return;
   }
+  if(o.players)for(const p of s.players){const q=o.players.find(x=>x.id===p.id);
+    if(q&&!q.sub&&p.sub)toast(`${p.id===me?'あなた':p.name}は代打CPUに交代`,p);
+    else if(q&&q.sub&&!p.sub&&!p.cpu)toast(`${p.id===me?'あなた':p.name}が戻ってきた`,p);
+    else if(!q&&!p.cpu&&o.status!=='lobby'&&s.status!=='lobby')toast(`${p.id===me?'あなた':p.name}が席を引き継いだ`,p)}
   const playing=s.status==='playing',cur=playing?s.players[s.turn]:null,myTurn=!!(cur&&cur.id===me);
   const meIn=s.players.some(p=>p.id===me&&!p.cpu);
-  if(!playing){ui.rulesSheet=false;ui.scoreSheet=false;ui.stampTray=false}
+  if(!playing){ui.rulesSheet=false;ui.scoreSheet=false;ui.stampTray=false;ui.predTray=false;ui.whisperTo=null}
   for(const st of s.stamps||[]){
     const k='st:'+st.i;if(seen.has(k))continue;seen.add(k);
-    const p=s.players.find(x=>x.id===st.p),text=STAMPS[st.k];if(!p||!text||Date.now()-(st.t||0)>20000)continue;
+    const p=s.players.find(x=>x.id===st.p);if(!p||Date.now()-(st.t||0)>20000)continue;
+    if(st.w){   // ないしょ話: only the person it was for reads it
+      const to=s.players.find(x=>x.id===st.to),wt=WHISPERS[st.k];if(!to||!wt)continue;
+      if(st.to===me){say(p.id,`🤫 ${wt}`,'whisper',true);toast(`🤫 ${p.name}からないしょ話「${wt}」`,p);speak(wt,p)}
+      else if(st.p===me)say(p.id,`🤫 ${to.name}に「${wt}」`,'whisper',true);
+      else say(p.id,`🤫 → ${to.id===me?'あなた':to.name}`,'whisper',true);
+      sfx('whisper');continue;
+    }
+    const text=STAMPS[st.k];if(!text)continue;
     say(p.id,text,'stamp');sfx('stamp');
     if(s.status==='roundEnd'||s.status==='gameEnd'||ui.rulesSheet||ui.scoreSheet)toast(`${p.id===me?'あなた':p.name}：${text}`,p);
   }
   if(playing&&s.roundId!==o.roundId){
     fx.deal=s.roundId;sfx('deal');
     const ev=eventInfo(s);
-    if(ev)setTimeout(()=>{banner('お題：'+ev[0],ev[1]);sfx('chance');speak('お題、'+ev[0])},650);
+    if(s.phase==='vote')setTimeout(()=>{banner('お題の投票','3つのお題か「なし」から選ぼう');sfx('vote')},650);
+    else if(ev)setTimeout(()=>{banner('お題：'+ev[0],ev[1]);sfx('chance');speak('お題、'+ev[0])},650);
     else cpuLine(s,null,'start',.6);
+  }
+  if(playing&&s.roundId===o.roundId&&o.phase==='vote'&&s.phase!=='vote'){
+    const ev=eventInfo(s);
+    if(ev){banner('お題：'+ev[0],ev[1]);sfx('chance');speak('お題、'+ev[0])}else{banner('お題なし','いつものルールで');sfx('vote')}
+    cpuLine(s,null,'start',.5);
   }
   if(playing&&s.roundId===o.roundId){
     if(myTurn&&s.phase==='discard'&&s.drawn!=null&&o.phase==='draw'){fx.drawn=s.drawn;sfx('draw')}
@@ -1173,7 +1693,8 @@ function detectEvents(o,s){
     if(s.riichi&&o.riichi)for(const p of s.players)if(s.riichi[p.id]&&!o.riichi[p.id]){
       const line=p.cpu?cpuLineText(s,p,'reach'):sayOf(p,'r');
       banner('リーチ！',(p.id===me?'あなた':p.name)+(line?`「${line}」`:''),p);sfx('reach');
-      say(p.id,line||'リーチ！','line');
+      const voiced=!p.cpu&&playVoice(p,'r');
+      say(p.id,line||'リーチ！','line',voiced);
       if(!p.cpu)cpuLine(s,null,'scared',.5);
     }
     if(meIn&&canRon(s,me)&&!canRon(o,me)){sfx('chance');buzz([40,40,40])}
@@ -1190,7 +1711,9 @@ function detectEvents(o,s){
       const wline=w?(w.cpu?cpuLineText(s,w,'win'):sayOf(w,'w')):'';
       if(!RM){burst(grand?grand[0]+'！':'ドンジャラ！',`${R.winner===me?'あなた':pName(s,R.winner)} の${R.how}`,big?'big':'win',w,wline);fx.sheetLate=true}
       sfx(big?'big':'win');
-      if(w){speak(wline||'ドンジャラ！',w);if(wline)say(w.id,wline,'line',true)}
+      if(w){if(!(!w.cpu&&playVoice(w,'w')))speak(wline||'ドンジャラ！',w);if(wline)say(w.id,wline,'line',true)}
+      if(primed)startClaps(s);
+      if(w&&s.players.some(p=>p.id===me&&!p.cpu))setTimeout(()=>{if(state&&state.roundId===s.roundId)writeHall(state)},writerDelay(s,isAuto(w)?null:w.id));
       if(R.winner===me){buzz([60,40,140]);recordZukan(s);statWin(R.points)}else if(R.from===me)setTimeout(()=>sfx('hit'),600);
       if(f&&f.cpu){const t=cpuLineText(s,f,'hit');if(t)say(f.id,t,'line',true)}
     }
@@ -1200,7 +1723,15 @@ function detectEvents(o,s){
     if(!RM){burst('優勝！',top?(top.id===me?'あなた':top.name):'','end',top)}
     fx.sheetLate=!RM;sfx('end');statGame(s);
     if(top)speak(`${top.id===me?'あなた':top.name}の優勝！`);
+    if(rivalKey(s)&&s.players.some(p=>p.id===me&&!p.cpu))setTimeout(()=>{if(state&&state.status==='gameEnd'&&state.roundId===s.roundId)writeRival(state)},writerDelay(s,null));
   }
+  {const oh=lastHist(o),nh=lastHist(s);
+   if(oh&&nh&&oh.rid===nh.rid){
+     let more=0;for(const [id,v] of Object.entries(nh.cl||{})){const u=(oh.cl||{})[id]||[0,0];if(id!==me)more+=Math.max(0,(v[0]+v[1])-(u[0]+u[1]))}
+     if(more)clapFx(more);
+     if(nh.cm&&nh.cm!==oh.cm)speak(nh.cm,{id:'_mc'});
+   }
+   if(s.cmEnd&&s.cmEnd!==o.cmEnd)speak(s.cmEnd,{id:'_mc'});}
   let moved=false;
   if(o.players)for(const p of s.players){
     const q=o.players.find(x=>x.id===p.id);
@@ -1252,33 +1783,34 @@ async function mutate(fn){
   err='混み合ってる。もう一度押してね';return false;
 }
 
-/* CPU moves: the host's screen plays them; if the host is away, other players' screens step in a little later */
-let cpuTimer=null,cpuV=-1;
-function cpuTick(){
+/* moves nobody at the table makes by hand: CPU and 代打 turns, closing the お題 vote, and a person whose clock ran out.
+   The host's screen does them; if the host is away, other players' screens step in a little later */
+let autoTimer=null,autoV=-1;
+function autoTick(){
   const s=state;
-  if(!s||s.fmt!==2||s.status!=='playing'||writeBlocked){clearTimeout(cpuTimer);cpuV=-1;return}
-  if(s.v===cpuV)return;
-  clearTimeout(cpuTimer);
-  if(!s.players.some(p=>p.id===me&&!p.cpu))return;
-  const cur=s.players[s.turn];
-  const ronCpu=s.players.find(p=>p.cpu&&canRon(s,p.id));
-  if(!ronCpu&&!cur.cpu)return;
-  cpuV=s.v;
-  const hs=humans(s),rank=Math.max(0,hs.findIndex(p=>p.id===me));
-  const base=ronCpu?800:(s.phase==='draw'?1500:1000);
-  const delay=s.hostId===me?base:base+2500+rank*900;
-  const v0=s.v;
-  cpuTimer=setTimeout(()=>{
+  if(!s||s.fmt!==2||s.status!=='playing'||writeBlocked||!s.players.some(p=>p.id===me&&!p.cpu)){clearTimeout(autoTimer);autoV=-1;return}
+  if(s.v===autoV)return;
+  clearTimeout(autoTimer);autoV=s.v;
+  const hs=activeHumans(s),rank=Math.max(0,hs.findIndex(p=>p.id===me)),host=s.hostId===me,v0=s.v;
+  const go=(ms,fn)=>{autoTimer=setTimeout(()=>{
     if(!state||state.v!==v0)return;
-    mutate(x=>{
-      if(x.v!==v0)return false;
-      const rc=x.players.find(p=>p.cpu&&canRon(x,p.id));if(rc)return doRon(x,rc.id);
-      const c=x.players[x.turn];if(!c.cpu)return false;
+    mutate(x=>x.v!==v0?false:fn(x)).then(ok=>{if(!ok&&state&&state.v===v0){autoV=-1;autoTimer=setTimeout(autoTick,600)}});
+  },Math.max(0,ms))};
+  if(s.phase==='vote'){go(VOTE_MS-(Date.now()-seenAt('v:'+s.roundId))+(host?0:2500+rank*900),x=>resolveVote(x));return}
+  const cur=s.players[s.turn],ronAuto=s.players.find(p=>isAuto(p)&&canRon(s,p.id));
+  if(ronAuto||isAuto(cur)){
+    const base=ronAuto?800:(s.phase==='draw'?1500:1000);
+    go(host?base:base+2500+rank*900,x=>{
+      const rc=x.players.find(p=>isAuto(p)&&canRon(x,p.id));if(rc)return doRon(x,rc.id);
+      const c=x.players[x.turn];if(!isAuto(c))return false;
       if(x.phase==='draw')return doDraw(x,c.id);
       if(doTsumo(x,c.id))return true;
       const ch=cpuChoose(x,c.id);return doDiscard(x,c.id,ch.t,ch.reach);
-    }).then(ok=>{if(!ok&&state&&state.v===v0){cpuV=-1;setTimeout(cpuTick,600)}});
-  },delay);
+    });
+    return;
+  }
+  const T=(timerSec(s)||AFK_SEC)*1000,k=turnKey(s),mine=cur.id===me;
+  go(T-(Date.now()-seenAt(k))+(mine?0:host?2000:4000+rank*1000),x=>turnKey(x)===k&&autoMove(x,cur.id));
 }
 
 /* ---- rooms ---- */
@@ -1305,12 +1837,13 @@ async function joinRoom(code){
   const d=snap.data(),already=d.players.some(p=>p.id===me);
   if(d.fmt!==2){enter(code);return}
   if(!already){
-    if(d.status!=='lobby'){err='もう対局が始まってる部屋だよ';return}
+    if(d.status==='playing'||d.status==='roundEnd'){watchRoom(code);return}   // already playing: come in and watch
+    if(d.status!=='lobby'){err='この対局は終わったところ。ホストが「もう一回あそぶ」を押すと入れる';return}
     if(d.players.length>=4){err='満員(4人)';return}
   }
   const prevRef=ref;ref=r;
   const ok=await mutate(s=>{
-    const p=s.players.find(p=>p.id===me);if(p){const np=profile();if(p.name===name&&profSame(p,np))return false;p.name=name;Object.assign(p,np);return}
+    const p=s.players.find(p=>p.id===me);if(p){const np=profile(),back=backFromSub(s,me);if(!back&&p.name===name&&profSame(p,np))return false;p.name=name;Object.assign(p,np);return}
     if(s.status!=='lobby'||s.players.length>=4)return false;
     s.players.push(Object.assign({id:me,name,cpu:false,score:START},profile()));
   });
@@ -1321,12 +1854,14 @@ function enter(code){
   primed=false;seen.clear();state=null;sel=null;gateKey='';entering=true;
   try{history.replaceState(null,'','#'+code)}catch(e){}
   unsub=ref.onSnapshot(onState,()=>{entering=false;err='接続が切れた。ページを開き直してね';render()});
+  subscribeFans(code);
 }
 function onState(snap){
   entering=false;
   const old=state,next=snap.exists?snap.data():null;
   if(!next){leave();render();return}
-  state=next;loadFaces(state);
+  state=next;loadFaces(state);loadVoicesOf(state);
+  if(!old&&state.fmt===2&&(state.status==='playing'||state.status==='roundEnd')&&!state.players.some(p=>p.id===me&&!p.cpu)){fanWrite({});startFanBeat()}
   if(!old||old.v!==state.v||old.roundId!==state.roundId){
     detectEvents(old,state);
     const s=state,ok=s.status==='playing'&&s.phase==='discard'&&s.players[s.turn]&&s.players[s.turn].id===me&&s.hands&&s.hands[me]&&s.hands[me].includes(sel);
@@ -1334,18 +1869,23 @@ function onState(snap){
     if(s.status!=='playing'&&s.status!=='roundEnd')confirmLeave=false;
   }
   updateGate();
-  render();cpuTick();
+  render();autoTick();
 }
 function leave(){
   if(unsub)unsub();unsub=null;ref=null;state=null;sel=null;entering=false;confirmLeave=false;ui.rulesSheet=false;
-  clearTimeout(cpuTimer);clearTimeout(gateTimer);cpuV=-1;
+  clearTimeout(autoTimer);clearTimeout(gateTimer);autoV=-1;
+  if(fanUnsub){try{fanUnsub()}catch(e){}fanUnsub=null}fans=[];fanCode=null;myFan=null;clearInterval(fanBeat);fanBeat=null;clapSt=null;hideClapBar();
   try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
 }
 async function leaveRoom(){
   const s=state;
-  if(s&&(s.status==='lobby'||s.status==='gameEnd')&&ref){
-    if(s.hostId===me){try{await ref.delete()}catch(e){}}
-    else await mutate(x=>{x.players=x.players.filter(p=>p.id!==me)});
+  if(s&&ref){
+    const meIn=s.players.some(p=>p.id===me&&!p.cpu);
+    if(s.status==='lobby'||s.status==='gameEnd'){
+      if(s.hostId===me){try{await ref.delete()}catch(e){}}
+      else if(meIn)await mutate(x=>{x.players=x.players.filter(p=>p.id!==me)});
+    }else if(meIn)await mutate(x=>goSub(x,me)?undefined:false);   // a 代打 CPU keeps the seat warm
+    if(!meIn)await fanLeave(s.code);
   }
   leave();
 }
@@ -1355,19 +1895,23 @@ async function doLeave(){err='';confirmLeave=false;try{await leaveRoom()}catch(e
 async function run(fn){if(busy)return;busy=true;err='';try{await fn()}catch(e){err='うまくいかなかった。もう一度試してね'}finally{busy=false;render()}}
 const act={
   addCpu:nm=>run(()=>mutate(s=>{if(s.status!=='lobby'||s.players.length>=4)return false;const used=s.players.filter(p=>p.cpu).map(p=>p.name);const pool=CPU_ORDER.filter(n=>!used.includes(n)),name=typeof nm==='string'&&PERSONA[nm]&&!used.includes(nm)?nm:pool[Math.floor(Math.random()*pool.length)];if(!name)return false;s.players.push({id:'cpu'+Date.now().toString(36)+Math.floor(Math.random()*1e4),name,cpu:true,score:START,av:PERSONA[name].av})}).then(r=>{ui.cpuPick=false;return r})),
-  opt:k=>run(()=>mutate(s=>{if(s.status!=='lobby'||s.hostId!==me||!['faces','events'].includes(k))return false;s.opts=Object.assign({faces:true,events:true,felt:'midori'},s.opts||{});s.opts[k]=s.opts[k]===false})),
+  opt:k=>run(()=>mutate(s=>{const def={faces:true,events:true,vote:true};if(s.status!=='lobby'||s.hostId!==me||!(k in def))return false;s.opts=Object.assign({faces:true,events:true,felt:'midori'},s.opts||{});const cur=s.opts[k]===undefined?def[k]:s.opts[k]!==false;s.opts[k]=!cur})),
+  timer:n=>run(()=>mutate(s=>{if(s.status!=='lobby'||s.hostId!==me||![0,15,30].includes(n))return false;s.opts=Object.assign({faces:true,events:true,felt:'midori'},s.opts||{});if(timerSec(s)===n)return false;s.opts.timer=n})),
+  vote:k=>run(()=>mutate(s=>castVote(s,me,k))),
+  back:()=>run(()=>mutate(s=>backFromSub(s,me))),
+  take:id=>run(async()=>{const name=saveName()||myName;if(!name){err='名前を入れてね';return}const ok=await mutate(s=>takeSeat(s,id,Object.assign({id:me,name,cpu:false,score:0},profile())));if(ok)fanWrite({play:true})}),
   felt:v=>run(()=>mutate(s=>{if(s.status!=='lobby'||s.hostId!==me||!FELTS.some(f=>f[0]===v))return false;s.opts=Object.assign({faces:true,events:true,felt:'midori'},s.opts||{});if(s.opts.felt===v)return false;s.opts.felt=v})),
   rmCpu:id=>run(()=>mutate(s=>{if(s.status!=='lobby')return false;s.players=s.players.filter(p=>p.id!==id)})),
   rounds:n=>run(()=>mutate(s=>{if(s.status!=='lobby'||s.maxRounds===n)return false;s.maxRounds=n})),
   start:()=>run(()=>mutate(s=>startGame(s))),
-  draw:()=>{if(!gateOpen)return;run(()=>mutate(s=>doDraw(s,me)))},
-  discard:(t,reach)=>{sel=null;throwAnim(t);run(()=>mutate(s=>doDiscard(s,me,t,!!reach)))},
+  draw:()=>{if(!gateOpen)return;run(()=>mutate(s=>{const r=doDraw(s,me);if(r)backFromSub(s,me);return r}))},
+  discard:(t,reach)=>{sel=null;throwAnim(t);run(()=>mutate(s=>{const r=doDiscard(s,me,t,!!reach);if(r)backFromSub(s,me);return r}))},
   tsumogiri:()=>{if(state&&state.drawn!=null)act.discard(state.drawn,false)},
   tsumo:()=>run(()=>mutate(s=>doTsumo(s,me))),
   ron:()=>run(()=>mutate(s=>doRon(s,me))),
   ready:()=>run(()=>mutate(s=>{const r=markReady(s,me);const p=s.players.find(q=>q.id===me);if(r&&p)Object.assign(p,profile());return r})),
   force:()=>run(()=>mutate(s=>{if(s.hostId!==me)return false;return nextRound(s)})),
-  again:()=>run(()=>mutate(s=>{if(s.status!=='gameEnd')return false;Object.assign(s,{status:'lobby',round:1,result:null,log:'',hands:null,rivers:null,wall:null,riichi:null,reachAt:null,lastDiscard:null,history:[],ready:{},roundId:null});s.players.forEach(p=>p.score=START)})),
+  again:()=>run(()=>mutate(s=>{if(s.status!=='gameEnd')return false;Object.assign(s,{status:'lobby',round:1,result:null,log:'',hands:null,rivers:null,wall:null,riichi:null,reachAt:null,lastDiscard:null,history:[],ready:{},roundId:null,vote:null,sad:null,cmEnd:null,cmBy:null});s.players=s.players.filter(p=>p.cpu||!p.sub);s.players.forEach(p=>{p.score=START;p.to=0})})),
 };
 function copyCode(){
   const code=state&&state.code;if(!code)return;
@@ -1416,6 +1960,18 @@ function guideBody(){
     ${brow('じぶん大好き','自分の顔パイを使ってあがる','+500')}
     ${brow('ともだちパワー','ほかの人の顔パイを使ってあがる(1枚ごと)','+300')}
     ${brow('お題','半分くらいの局で出る。ラッキー祭り・金のパイ・倍々ドンジャラ・リーチ祭り・チームの日','')}
+   </tbody></table></div>
+   <h3>みんなで遊ぶしくみ</h3>
+   <div class="tablewrap"><table class="sets-t"><tbody>
+    ${brow('お題の投票','局のはじめに、3つのお題か「なし」から投票(6秒)。多数決で、同じ票数ならくじ引き','')}
+    ${brow('持ち時間','1手15秒か30秒(部屋で決める)。切れるとツモ切り。2回続けて切れると代打CPUに交代。「なし」でも90秒止まると自動で進む','')}
+    ${brow('代打CPU','途中で抜けた人の席はCPUが代わりに打つ。戻ったら「自分で打つ」で交代','')}
+    ${brow('観戦と予想','対局中の部屋は観戦できる。序盤のうちに「この局はだれがあがる？」を予想。いちばん当てた人が「予想王」','')}
+    ${brow('席の引き継ぎ','観戦している人は、CPUの席をそのまま引き継いで途中から参加できる','')}
+    ${brow('拍手','だれかがあがったら3.5秒間の連打タイム。いちばん連打した人が「盛り上げ王」','')}
+    ${brow('ないしょ話','スタンプを1人にだけ送れる。ほかの人には、送ったことだけが見える','')}
+    ${brow('しょんぼり','ふりこんだ人は次の局、アイコンと顔パイに涙がつく','')}
+    ${brow('因縁ボード・殿堂','同じメンバーの通算成績と、歴代の高い手が残る','')}
    </tbody></table></div>
    <h3>組み合わせ役</h3>
    <div class="tablewrap"><table class="sets-t"><tbody>
@@ -1469,7 +2025,20 @@ function viewLobby(keepName,keepCode){
   </section>
   ${mine.length?`<section class="panel"><h2>参加中の対局</h2><div class="roomlist">${mine.map(r=>`<div class="r"><div class="ri"><span class="code">${esc(r.code)}</span><span class="sub">第${r.round}局・${esc(r.players.map(p=>p.name).join('・'))}</span></div><button class="primary" data-join="${esc(r.code)}">戻る</button></div>`).join('')}</div></section>`:''}
   <section class="panel"><h2>待っている部屋</h2><div class="roomlist" id="roomlist">${roomListHTML()}</div></section>
-  ${zukanHTML()}${guideHTML(false)}${castHTML()}`;
+  ${watchRoomsHTML()}${hallHTML()}${zukanHTML()}${guideHTML(false)}${castHTML()}`;
+}
+function watchRoomsHTML(){
+  const list=rooms.filter(r=>r.fmt===2&&(r.status==='playing'||r.status==='roundEnd')&&!r.players.some(p=>p.id===me&&!p.cpu)&&Date.now()-(r.updatedAt||0)<3600e3);
+  if(!list.length)return '';
+  return `<section class="panel"><h2>対局中の部屋</h2><p class="msg">観戦して応援や予想ができる。CPUの席なら途中から引き継いで参加もできる</p><div class="roomlist">${list.map(r=>`<div class="r"><div class="ri"><span class="code">${esc(r.code)}</span><span class="sub">第${r.round}局・${esc(r.players.map(p=>p.name).join('・'))}</span></div><button class="ghost" data-watch="${esc(r.code)}">観戦する</button></div>`).join('')}</div></section>`;
+}
+function hallHTML(){
+  const top=(hall&&Array.isArray(hall.top)?hall.top:[]).slice(0,5);if(!top.length)return '';
+  return `<section class="panel hall"><div class="ph"><h2>みんなの殿堂</h2><span class="chip">歴代の高い手</span></div><ol class="hl">${top.map((e,i)=>{
+    const p={id:e.id,name:e.name,av:e.av,fv:e.fv,cpu:e.cpu};
+    const sets=(e.sets||[]).map(x=>(x.tiles||[]).map(t=>tileHTML(t,'xs',e.faces&&e.faces[t])).join('')).join('<i class="gap"></i>');
+    const ys=(e.yaku||[]).filter(y=>!/セット$|^ドンジャラ$/.test(y)).join('・');
+    return `<li><span class="hr-n">${i+1}</span>${avHTML(p,'s')}<div class="hl-b"><div class="hl-h"><b>${esc(e.name)}</b><span class="hl-p">${fmtN(e.pts)}点</span><small>${esc(e.how||'')}</small></div><div class="ts">${sets}</div>${ys?`<small class="hl-y">${esc(ys)}</small>`:''}</div></li>`}).join('')}</ol></section>`;
 }
 function viewLoading(){return `${headerBig('')}<section class="panel"><p class="msg">部屋に入っています<span class="dots"><i>.</i><i>.</i><i>.</i></span></p></section>`}
 function viewOld(){
@@ -1477,14 +2046,16 @@ function viewOld(){
   return `<header class="top"><div class="brand"><h1>みんなのドンジャラ</h1></div><button class="ghost" id="leave2">ロビーへ</button></header><section class="panel"><h2>この部屋は前のバージョンのルール</h2><p class="msg">ルールが新しくなったので、部屋 <b class="code">${esc(s.code)}</b> の続きは遊べない。ロビーに戻って新しく部屋を作ってね。</p>${host?'<div class="row"><button class="primary" id="closeOld">この部屋を閉じる</button></div>':''}</section>`;
 }
 function viewRoom(keepName){
-  const s=state,meIn=s.players.some(p=>p.id===me),host=s.hostId===me,o=s.opts||{},faces=o.faces!==false,events=o.events!==false,felt=feltOf(s);
+  const s=state,meIn=s.players.some(p=>p.id===me),host=s.hostId===me,o=s.opts||{},faces=o.faces!==false,events=o.events!==false,vote=o.vote!==false,tm=timerSec(s),felt=feltOf(s);
   const slots=[0,1,2,3].map(i=>{const p=s.players[i];
     if(!p)return `<li class="slot empty"><span class="sn">${i+1}</span><span>空き</span></li>`;
     return `<li class="slot">${bubbleHTML(p.id)}${avHTML(p)}<span class="sl-n"><span class="nm">${esc(p.name)}</span><span class="ttl">${esc(ttlOf(p))}</span></span>${p.id===s.hostId?'<span class="pill">ホスト</span>':''}${p.cpu?'<span class="pill">CPU</span>':''}${p.id===me?'<span class="pill me">あなた</span>':''}${host&&p.cpu?`<button class="ghost small" data-rm="${esc(p.id)}">外す</button>`:''}</li>`}).join('');
   const used=s.players.filter(p=>p.cpu).map(p=>p.name);
   const picker=host&&ui.cpuPick&&s.players.length<4?`<div class="cpus">${CPU_ORDER.filter(n=>!used.includes(n)).map(n=>`<button class="cpub" data-cpu="${esc(n)}">${avHTML({cpu:true,name:n},'s')}<span><b>${esc(n)}</b><small>${esc(PERSONA[n].trait)}</small></span></button>`).join('')}</div>`:'';
-  const rules=`<div class="row"><span class="label">ルール</span>${host?`<button class="toggle" data-opt="faces" aria-pressed="${faces}">顔パイ</button><button class="toggle" data-opt="events" aria-pressed="${events}">お題</button>`:`<span class="msg">顔パイ${faces?'あり':'なし'}・お題${events?'あり':'なし'}</span>`}</div>
-    <p class="msg hint">顔パイ＝参加している人の顔の牌(なんにでもなる)。お題＝ときどき出る特別ルール</p>
+  const tmName=tm?tm+'秒':'なし';
+  const rules=`<div class="row"><span class="label">ルール</span>${host?`<button class="toggle" data-opt="faces" aria-pressed="${faces}">顔パイ</button><button class="toggle" data-opt="events" aria-pressed="${events}">お題</button><button class="toggle" data-opt="vote" aria-pressed="${events&&vote}" ${events?'':'disabled'}>お題は投票</button>`:`<span class="msg">顔パイ${faces?'あり':'なし'}・お題${events?(vote?'あり(投票)':'あり'):'なし'}</span>`}</div>
+    <div class="row"><span class="label">持ち時間</span>${host?`<div class="seg" role="group" aria-label="持ち時間">${[15,30,0].map(n=>`<button aria-pressed="${tm===n}" data-timer="${n}">${n?n+'秒':'なし'}</button>`).join('')}</div>`:`<span class="msg">1手${tmName}</span>`}</div>
+    <p class="msg hint">顔パイ＝参加している人の顔の牌(なんにでもなる)。お題＝特別ルール(投票なら毎局みんなで決める)。持ち時間が切れるとツモ切りで、2回続くと代打CPUに交代</p>
     <div class="row"><span class="label">卓の色</span>${host?`<div class="seg" role="group" aria-label="卓の色">${FELTS.map(([k,n])=>`<button aria-pressed="${felt===k}" data-felt="${k}">${n}</button>`).join('')}</div>`:`<span class="msg">${esc((FELTS.find(f=>f[0]===felt)||FELTS[0])[1])}</span>`}</div>`;
   const ctl=host?`<div class="hostctl"><div class="row"><span class="label">局数</span><div class="seg" role="group" aria-label="局数">${[1,4,8].map(n=>`<button aria-pressed="${s.maxRounds===n}" data-rounds="${n}">${n}局</button>`).join('')}</div></div>${rules}
     <div class="row"><button class="ghost" id="cpu" ${s.players.length>=4?'disabled':''} title="だれが来るかはおまかせ">CPUを入れる</button><button class="ghost" id="cpuPick" aria-pressed="${!!ui.cpuPick}" ${s.players.length>=4?'disabled':''}>えらんで入れる</button></div>${picker}
@@ -1499,7 +2070,17 @@ function viewRoom(keepName){
   <section class="panel"><div class="ph"><h2>メンバー</h2><span class="chip"><b>${s.players.length}</b>/4人</span></div><ol class="seats">${slots}</ol>
    ${meIn?stampRow([0,1,6,7])+prof:`<div class="row"><input id="name" maxlength="12" placeholder="なまえ" value="${esc(keepName??myName)}"><button class="primary" id="joinHere" ${s.players.length>=4?'disabled':''}>この部屋に参加する</button></div>`}
    ${ctl}<p class="err" role="alert">${esc(err)}</p></section>
-  ${guideHTML(true)}`;
+  ${rivalHTML(s)}${guideHTML(true)}`;
+}
+function rivalHTML(s){
+  const d=rivalFor(s);if(!d||!d.games)return '';
+  const pl=id=>s.players.find(p=>p.id===id),nm=id=>id==='cpu'?'CPU':esc((pl(id)||{}).name||(d.names&&d.names[id])||'?');
+  const firsts=Object.entries(d.firsts||{}).sort((a,b)=>b[1]-a[1]);
+  const hits=Object.entries(d.hits||{}).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,n])=>{const [f,w]=k.split('>');return `<li>${nm(f)} → ${nm(w)} に通算 <b>${n}</b>回ふりこみ${n>=3?'(天敵)':''}</li>`}).join('');
+  return `<section class="panel rival"><div class="ph"><h2>因縁ボード</h2><span class="chip">このメンバーで <b>${d.games}</b>戦</span></div>
+    ${d.lastWin?`<p class="msg">前回の優勝：<b>${nm(d.lastWin.id)}</b>${d.lastWin.id!=='cpu'&&pl(d.lastWin.id)?'。ほかのみんなはリベンジマッチ！':''}</p>`:''}
+    <div class="rv-firsts">${firsts.map(([id,n])=>`<span class="chip">${id!=='cpu'&&pl(id)?avHTML(pl(id),'s'):''}${nm(id)} <b>${n}</b>回優勝</span>`).join('')}</div>
+    ${hits?`<ul class="rv-hits">${hits}</ul>`:''}</section>`;
 }
 function histTable(s){
   const hist=s.history||[];
@@ -1509,8 +2090,8 @@ function viewGame(){
   const s=state,n=s.players.length,mi=pIdx(s,me),meIn=mi>=0&&!s.players[mi].cpu;
   const opps=[];if(mi<0)for(let i=0;i<n;i++)opps.push(i);else for(let k=1;k<n;k++)opps.push((mi+k)%n);
   const size=opps.length>=3?'xs':'sm';
-  const head=`<header class="gamehead"><div class="gh-row"><h1>みんなのドンジャラ</h1><div class="hbtns">${soundBtns()}</div></div><div class="gh-row"><div class="meta"><span class="chip">部屋 <b>${esc(s.code)}</b></span><span class="chip">第<b>${s.round}</b>/${s.maxRounds}局</span></div><div class="hbtns"><button class="ghost small" id="score">成績</button><button class="ghost small" id="rules">ルール</button><button class="ghost small" id="leave">ロビーへ</button></div></div></header>`
-    +(confirmLeave?`<div class="confirm" role="alert"><p>対局中だよ。ロビーに戻っても席は残るから、あとで部屋コードを入れればまた戻れる。${s.hostId===me&&s.players.some(p=>p.cpu)?'ホストが抜けるとCPUの動きが少しゆっくりになる。':''}</p><div class="row"><button class="primary" id="leaveYes">ロビーへ戻る</button><button class="ghost" id="leaveNo">続ける</button></div></div>`:'');
+  const head=`<header class="gamehead"><div class="gh-row"><h1>みんなのドンジャラ</h1><div class="hbtns">${soundBtns()}</div></div><div class="gh-row"><div class="meta"><span class="chip">部屋 <b>${esc(s.code)}</b></span><span class="chip">第<b>${s.round}</b>/${s.maxRounds}局</span>${watchers().length?`<span class="chip">👀 <b>${watchers().length}</b>人観戦</span>`:''}</div><div class="hbtns"><button class="ghost small" id="score">成績</button><button class="ghost small" id="rules">ルール</button><button class="ghost small" id="leave">ロビーへ</button></div></div></header>`
+    +(confirmLeave?`<div class="confirm" role="alert"><p>対局中だよ。ロビーに戻ると、そのあいだは代打CPUがあなたの席で打つ。部屋コードを入れて戻れば交代できる。${s.hostId===me&&s.players.some(p=>p.cpu)?'ホストが抜けるとCPUの動きが少しゆっくりになる。':''}</p><div class="row"><button class="primary" id="leaveYes">ロビーへ戻る</button><button class="ghost" id="leaveNo">続ける</button></div></div>`:'');
   const table=`<section class="felt th-${feltOf(s)}" aria-label="卓"><div class="opps" style="--n:${Math.max(1,opps.length)}">${opps.map(i=>seatHTML(s,i,size,false)).join('')}</div>${centerHTML(s)}${mi>=0?seatHTML(s,mi,'sm',true):''}</section>`;
   let rack=null,sheet='';
   if(s.status==='roundEnd')sheet=sheetRound(s);
@@ -1525,9 +2106,9 @@ function seatHTML(s,i,size,isMe){
   const tiles=riv.map((t,j)=>{const key=`${s.roundId}:r:${t}`,nw=primed&&!seen.has(key);seen.add(key);
     const last=!!(playing&&ld&&ld.pid===p.id&&j===riv.length-1);
     return tileHTML(t,size+(j===ra?' side':'')+(last?' last':'')+(last&&ronable?' ronme':'')+(nw&&!RM?' drop':''))}).join('');
-  const pills=(i===s.dealer?'<span class="pill oya">親</span>':'')+(rch?'<span class="pill reach">リーチ</span>':'')+(p.cpu?'<span class="pill">CPU</span>':'')+(!isMe&&hc?`<span class="backs" title="手牌${hc}枚">${'<span class="tile mini back"></span>'.repeat(hc)}</span>`:'');
+  const pills=(i===s.dealer?'<span class="pill oya">親</span>':'')+(rch?'<span class="pill reach">リーチ</span>':'')+(p.cpu?'<span class="pill">CPU</span>':'')+(p.sub?'<span class="pill sub">代打CPU</span>':'')+(!isMe&&hc?`<span class="backs" title="手牌${hc}枚">${'<span class="tile mini back"></span>'.repeat(hc)}</span>`:'');
   const tt=ttlOf(p);
-  return `<div class="seat${isTurn?' turn':''}${isMe?' me':''}">${bubbleHTML(p.id)}<div class="seat-h">${avHTML(p)}<div class="seat-n"><span class="nm">${isMe?'あなた':esc(p.name)}</span>${coinHTML(p)}${tt?`<span class="ttl">${esc(tt)}</span>`:''}</div></div><div class="pills">${pills}</div><div class="river">${tiles||'<span class="empty">まだなし</span>'}</div></div>`;
+  return `<div class="seat${isTurn?' turn':''}${isMe?' me':''}">${bubbleHTML(p.id)}<div class="seat-h">${avHTML(p)}<div class="seat-n"><span class="nm">${isMe?'あなた':esc(p.name)}</span>${coinHTML(p)}${tt?`<span class="ttl">${esc(tt)}</span>`:''}</div>${isTurn&&!isAuto(p)&&s.phase!=='vote'?clockHTML():''}</div><div class="pills">${pills}</div><div class="river">${tiles||'<span class="empty">まだなし</span>'}</div></div>`;
 }
 function centerHTML(s){
   const playing=s.status==='playing',cur=playing?s.players[s.turn]:null,lucky=Number.isInteger(s.lucky)?s.lucky:null;
@@ -1538,7 +2119,23 @@ function centerHTML(s){
   if(ld){const ck=`${s.roundId}:c:${ld.tile}`,cn=primed&&!seen.has(ck);seen.add(ck);
     last=`<div class="lastd">${tileHTML(ld.tile,'md'+(old?'':ronable?' ronme':' last')+(cn&&!RM?' drop':''))}<span>${ld.pid===me?'あなた':esc(pName(s,ld.pid))}が<br>捨てた</span></div>`}
   const ev=eventInfo(s),wl=(s.wall||[]).length,hot=playing&&wl<=5;
-  return `<div class="center">${ev?`<div class="event">お題：<b>${esc(ev[0])}</b><small>${esc(ev[1])}</small></div>`:''}<div class="lucky">${lucky!=null?`${tileHTML(lucky*100+30,'md')}<span>ラッキー</span>`:''}</div><div class="tturn">${cur?`<span class="tt-who${cur.id===me?' mine':''}">${cur.id===me?'あなたの番':esc(cur.name)+'の番'}</span>`:''}${last}</div><div class="wallct${hot?' hot':''}"><b>${wl}</b><span>${hot?'ラスト':'山'}</span></div></div>`;
+  return `<div class="center">${s.phase==='vote'&&playing?voteHTML(s):ev?`<div class="event">お題：<b>${esc(ev[0])}</b><small>${esc(ev[1])}</small></div>`:''}<div class="lucky">${lucky!=null?`${tileHTML(lucky*100+30,'md')}<span>ラッキー</span>`:''}</div><div class="tturn">${cur?`<span class="tt-who${cur.id===me?' mine':''}">${cur.id===me?'あなたの番':esc(cur.name)+'の番'}</span>`:''}${last}</div><div class="wallct${hot?' hot':''}"><b>${wl}</b><span>${hot?'ラスト':'山'}</span></div></div>`;
+}
+function voteHTML(s){
+  const v=s.vote;if(!v)return '';const meIn=s.players.some(p=>p.id===me&&!p.cpu&&!p.sub);
+  return `<div class="vote"><div class="vh"><b>お題の投票</b><span class="msg">${meIn?'1つえらんでね':'みんなが選んでる'}</span>${clockHTML()}</div><div class="vopts">${v.c.map(k=>{
+    const nm=k==='none'?'お題なし':EVENTS[k][0],ds=k==='none'?'いつものルール':EVENTS[k][1],who=s.players.filter(p=>v.by[p.id]===k);
+    return `<button class="vopt${v.by[me]===k?' on':''}" data-vote="${k}" aria-pressed="${v.by[me]===k}" ${meIn?'':'disabled'}><b>${esc(nm)}</b><small>${esc(ds)}</small><span class="vwho">${who.map(p=>avHTML(p,'s')).join('')}</span></button>`}).join('')}</div></div>`;
+}
+function specRackHTML(s){
+  const playing=s.status==='playing',mp=myPredFor(s),cpus=s.players.filter(p=>p.cpu);
+  const tgt=ui.cheerTo&&s.players.some(p=>p.id===ui.cheerTo)?ui.cheerTo:(s.players[s.turn]||s.players[0]).id;
+  const pred=predOpen(s)?`<div class="spec-row"><span class="label">この局、だれがあがる？</span>${s.players.map(p=>`<button class="ghost small pchip" data-pred="${esc(p.id)}" aria-pressed="${mp===p.id}">${avHTML(p,'s')}${esc(p.name)}</button>`).join('')}</div>`
+    :mp&&playing?`<div class="spec-row"><span class="msg">🔮 予想：<b>${esc(pName(s,mp))}</b></span></div>`:'';
+  const cheer=`<div class="spec-row"><span class="label">応援する人</span>${s.players.map(p=>`<button class="ghost small pchip" data-cto="${esc(p.id)}" aria-pressed="${tgt===p.id}" aria-label="${esc(p.name)}">${avHTML(p,'s')}</button>`).join('')}</div><div class="stamps">${CHEERS.map((t,k)=>`<button class="stampb" data-cheer="${k}">${t}</button>`).join('')}</div>`;
+  const take=cpus.length&&(playing||s.status==='roundEnd')?`<div class="spec-row"><span class="label">参加する</span>${cpus.map(p=>`<button class="ghost small" data-take="${esc(p.id)}">${esc(p.name)}の席を引き継ぐ</button>`).join('')}</div>`:'';
+  const nm=myName?'':`<div class="spec-row"><input id="specName" maxlength="12" placeholder="なまえ(応援に出る)" autocomplete="nickname"></div>`;
+  return `<div class="guide spec"><div class="gtext"><span class="g-main">👀 観戦中</span><span class="g-sub">応援や予想ができる(手牌は見えない)</span></div></div>${nm}${pred}${cheer}${take}`;
 }
 function sheetScore(s){
   const rank=p=>1+s.players.filter(q=>q.score>p.score).length,hist=s.history||[],lastH=hist[hist.length-1];
@@ -1546,8 +2143,9 @@ function sheetScore(s){
   return sheetWrap(null,'成績表',`<h2>成績表</h2><div class="tablewrap"><table class="score"><thead><tr><th>順位</th><th>なまえ</th><th class="num">コイン</th><th class="num">前局</th></tr></thead><tbody>${rows}</tbody></table></div>${hist.length?`<h3>局ごとの記録</h3>${histTable(s)}`:'<p class="msg">まだ記録がない。1局終わるとここに増えていく</p>'}`,'<button class="primary big" id="scoreClose">閉じる</button>');
 }
 function rackHTML(s,meIn){
-  if(!meIn)return `<div class="guide"><div class="gtext"><span class="g-main">観戦中</span><span class="g-sub">この対局には参加していない</span></div></div>`;
-  const h=(s.hands&&s.hands[me])||[],cur=s.players[s.turn],myTurn=cur.id===me,disc=myTurn&&s.phase==='discard',rch=!!(s.riichi&&s.riichi[me]);
+  if(!meIn)return specRackHTML(s);
+  const h=(s.hands&&s.hands[me])||[],cur=s.players[s.turn],myTurn=cur.id===me,disc=myTurn&&s.phase==='discard',rch=!!(s.riichi&&s.riichi[me]),meP=s.players.find(p=>p.id===me);
+  if(meP&&meP.sub)return `<div class="guide alert"><div class="gtext"><span class="g-main">代打CPUが打ってる</span><span class="g-sub">戻ってきたら、ここを押して交代</span></div><button class="primary" id="backIn">自分で打つ</button></div><div class="hand">${sortHand(h).map(t=>`<span class="tw">${tileHTML(t)}</span>`).join('')}</div>`;
   const hasDrawn=disc&&s.drawn!=null&&h[h.length-1]===s.drawn;
   const base=sortHand(hasDrawn?h.slice(0,-1):h);
   const rd=disc&&!rch?reachDiscards(s,h):new Set();
@@ -1563,7 +2161,8 @@ function rackHTML(s,meIn){
   };
   const tilesHTML=base.map((t,i)=>one(t,i,false)).join('')+(hasDrawn?`<span class="drawn-sep" aria-hidden="true"></span><span class="drawn-wrap">${one(s.drawn,base.length,true)}</span>`:'');
   let gCls='',gMain,gSub,step='';
-  if(ron){gCls='alert';gMain='ロンできる！';gSub=`${esc(pName(s,s.lastDiscard.pid))}が捨てた${tileName(s.lastDiscard.tile)}でそろう(${fmtN(ron.points)}点)`}
+  if(s.phase==='vote'){gCls='mine';gMain='お題の投票中';gSub='卓のまん中から1つえらんでね'}
+  else if(ron){gCls='alert';gMain='ロンできる！';gSub=`${esc(pName(s,s.lastDiscard.pid))}が捨てた${tileName(s.lastDiscard.tile)}でそろう(${fmtN(ron.points)}点)`}
   else if(tsumo){gCls='alert';gMain='そろった！';gSub=`ツモであがろう(${fmtN(tsumo.points)}点)`}
   else if(myTurn&&s.phase==='draw'){gCls='mine';gMain='あなたの番';gSub=gateOpen?'山から1枚引こう':'ロンする人がいないか待ってる…'}
   else if(disc&&rch){gCls='mine';gMain='リーチ中';gSub='引いた牌をそのまま捨てよう(ツモ切り)'}
@@ -1583,8 +2182,13 @@ function rackHTML(s,meIn){
   if(myTurn&&s.phase==='draw')acts.push(gateOpen?'<button class="primary big" id="draw">引く</button>':`<button class="big charging" id="draw" disabled style="--gate:${RON_WINDOW}ms;--gate-el:-${Math.min(RON_WINDOW,Date.now()-gateStart)}ms">引く</button>`);
   if(disc&&rch&&s.drawn!=null)acts.push('<button class="primary big" id="tsumogiri">ツモ切り</button>');
   if(disc&&!rch&&sel!=null){if(rd.has(sel))acts.push('<button class="big gold" id="reachDiscard">リーチして捨てる</button>');acts.push('<button class="primary big" id="discard">捨てる</button>')}
-  const tray=ui.stampTray?`<div class="stamps tray">${STAMPS.map((t,k)=>`<button class="stampb" data-stamp="${k}">${t}</button>`).join('')}</div>`:'';
-  return `${tray}<div class="guide ${gCls}${fx.flashTurn&&!RM?' flash':''}"><div class="gtext"><span class="g-main">${gMain}</span><span class="g-sub">${gSub}</span></div>${step}</div><div class="hand">${tilesHTML}</div><div class="row2"><button class="ghost small" id="stampBtn" aria-pressed="${!!ui.stampTray}">スタンプ</button>${waitsHTML}<div class="actions">${acts.join('')}</div></div>`;
+  const others=s.players.filter(p=>!p.cpu&&p.id!==me),wto=ui.whisperTo&&others.some(p=>p.id===ui.whisperTo)?ui.whisperTo:null;
+  const tray=ui.stampTray?`<div class="stamps tray">${wto?`<span class="label">🤫 ${esc(pName(s,wto))}にだけ</span>${WHISPERS.map((t,k)=>`<button class="stampb wh" data-whisper="${k}">${t}</button>`).join('')}<button class="ghost small" id="whisperOff">もどる</button>`
+    :`${STAMPS.map((t,k)=>`<button class="stampb" data-stamp="${k}">${t}</button>`).join('')}${others.length?`<span class="wh-row"><span class="label">🤫 ないしょ話</span>${others.map(p=>`<button class="ghost small pchip" data-wto="${esc(p.id)}">${avHTML(p,'s')}${esc(p.name)}</button>`).join('')}</span>`:''}`}</div>`:'';
+  const mp=myPredFor(s),po=predOpen(s);
+  const ptray=ui.predTray&&po?`<div class="stamps tray"><span class="label">🔮 この局、だれがあがる？</span>${s.players.filter(p=>p.id!==me).map(p=>`<button class="ghost small pchip" data-pred="${esc(p.id)}" aria-pressed="${mp===p.id}">${avHTML(p,'s')}${esc(p.name)}</button>`).join('')}</div>`:'';
+  const pbtn=po?`<button class="ghost small" id="predBtn" aria-pressed="${!!ui.predTray}">${mp?'🔮 '+esc(pName(s,mp)):'🔮 予想'}</button>`:'';
+  return `${tray}${ptray}<div class="guide ${gCls}${fx.flashTurn&&!RM?' flash':''}"><div class="gtext"><span class="g-main">${gMain}</span><span class="g-sub">${gSub}</span></div>${step}${myTurn&&s.phase!=='vote'?clockHTML('g-clock'):''}</div><div class="hand">${tilesHTML}</div><div class="row2"><button class="ghost small" id="stampBtn" aria-pressed="${!!ui.stampTray}">スタンプ</button>${pbtn}${waitsHTML}<div class="actions">${acts.join('')}</div></div>`;
 }
 /* a sheet's entrance plays once; renders during it carry the elapsed time so the animation continues instead of restarting or vanishing */
 const sheetFx={key:null,at:0,late:false},SHEET_ANIM_MS=6500;
@@ -1611,10 +2215,14 @@ function sheetRound(s){
     <div class="sets">${(R.sets||[]).map(x=>`<figure class="set"><div class="ts">${x.tiles.map(tileOf).join('')}</div><figcaption>${SET_NAME[x.kind]||''}<b>${SET_PTS[x.kind]||0}</b></figcaption></figure>`).join('')}</div>
     <div class="tablewrap"><table class="yaku"><thead><tr><th>役</th><th class="num">点</th></tr></thead><tbody>${(R.yaku||[]).map((y,i)=>`<tr class="yrow" style="--d:${i}"><td>${esc(y[0])}${R.winner===me&&nw.has(zkKey(y[0]))?'<span class="newb">NEW</span>':''}</td><td class="num">${fmtN(y[1])}</td></tr>`).join('')}</tbody><tfoot><tr class="ytot" style="--d:${(R.yaku||[]).length}"><td>合計</td><td class="num">${fmtN(R.points)}</td></tr></tfoot></table></div>
     <p class="msg">${R.how==='ロン'?`${esc(pName(s,R.from))} が ${fmtN(R.pay)} 枚を払う`:`ツモなので、ほかの全員で割って払う(合計 ${fmtN(R.pay)} 枚)`}</p>`;
+    const cs=clapSum(s),hitters=last?fans.filter(f=>f.preds&&f.preds[last.rid]===R.winner):[];
+    body+=cs&&(cs.c||cs.d)?`<p class="claps">👏 拍手 <b>${cs.c}</b>${cs.d?` ・ 🤝 どんまい <b>${cs.d}</b>`:''}<small>${esc(cs.who.slice(0,5).map(([n,c])=>`${n}×${c}`).join('・'))}</small></p>`:'';
+    body+=hitters.length?`<p class="msg">🔮 予想的中：${hitters.map(f=>esc(s.players.some(p=>p.id===f.id)?f.name:'👀'+f.name)).join('・')}</p>`:'';
+    body+=last&&last.cm?`<div class="cm"><span>🎙 実況</span><p>${esc(last.cm)}</p></div>`:aiReady()&&last&&last.w?`<button class="ghost small" id="aiAsk" ${last.cmBy?'disabled':''}>${last.cmBy?'🎙 実況を考え中…':'🎙 Claudeに実況してもらう'}</button>`:'';
   }
   const others=s.players.filter(p=>p.id!==R.winner);
   const hands=`<details data-ui="handsOpen" ${ui.handsOpen?'open':''}><summary>${R.draw?'みんなの手牌を見る':'ほかの人の手牌を見る'}</summary><div class="hands-list">${others.map(p=>`<div class="hr"><span class="label">${esc(p.name)}</span><div class="ts">${sortHand((s.hands&&s.hands[p.id])||[]).map(t=>tileHTML(t,'sm')).join('')}</div></div>`).join('')}</div></details>`;
-  const hs=humans(s),rd=s.ready||{},nReady=hs.filter(p=>rd[p.id]).length,meH=hs.some(p=>p.id===me),meReady=!!rd[me];
+  const hs=activeHumans(s),rd=s.ready||{},nReady=hs.filter(p=>rd[p.id]).length,meH=s.players.some(p=>p.id===me&&!p.cpu),meReady=!!rd[me];
   const fin=s.round>=s.maxRounds||s.players.some(p=>p.score<=0);
   const acts=`${meH?`<button class="primary big" id="next" ${meReady?'disabled':''}>${meReady?'OK！ ほかの人を待ってる':(fin?'最終結果を見る':'次の局へ')}</button>`:''}${hs.length>1?`<span class="msg">OK <b>${nReady}</b>/${hs.length}人・全員OKで進む</span>`:''}${s.hostId===me&&hs.length>1&&meReady?'<button class="ghost" id="force">待たずに進む</button>':''}`;
   return sheetWrap(key,`第${s.round}局の結果`,`${body}<h3>コインの動き</h3><div class="tablewrap"><table class="delta"><thead><tr><th>なまえ</th><th class="num">今回</th><th class="num">コイン</th></tr></thead><tbody>${deltaRows}</tbody></table></div>${hands}${meH&&hs.length>1?stampRow([1,4,2,5]):''}`,acts);
@@ -1623,10 +2231,12 @@ function sheetEnd(s){
   const st=[...s.players].sort((a,b)=>b.score-a.score);
   const rk=p=>1+s.players.filter(q=>q.score>p.score).length;
   const rows=st.map(p=>`<tr class="${rk(p)===1?'win':''}"><td class="rk">${rk(p)}位</td><td><span class="who">${avHTML(p,'s')}<span class="nm">${esc(p.name)}</span>${p.id===me?'<span class="pill me">あなた</span>':''}</span></td><td class="num">${coinHTML(p)}</td><td class="num ${dCls(p.score-START)}">${fmtDelta(p.score-START)}</td></tr>`).join('');
-  const host=s.hostId===me,hist=s.history||[],aw=awards(s),hs=humans(s),meH=hs.some(p=>p.id===me);
+  const host=s.hostId===me,hist=s.history||[],aw=awards(s,fans),hs=humans(s),meH=hs.some(p=>p.id===me);
+  const rvk=rivalKey(s),rv=rvk&&rivalCache.get(rvk),rids=new Set(hist.map(h=>h.rid)),inHall=hall&&Array.isArray(hall.top)?hall.top.filter(e=>rids.has(e.k)):[];
+  const extra=`${rv&&rv.last===s.roundId?`<p class="msg">⚔️ このメンバーで <b>${rv.games}</b>戦目。${Object.entries(rv.firsts||{}).sort((a,b)=>b[1]-a[1]).map(([id,n])=>`${esc(id==='cpu'?'CPU':(s.players.find(p=>p.id===id)||{}).name||(rv.names&&rv.names[id])||'?')} ${n}回優勝`).join('・')}</p>`:''}${inHall.length?`<p class="msg">🏆 殿堂入り：${inHall.map(e=>`${esc(e.name)}の${fmtN(e.pts)}点`).join('・')}</p>`:''}${s.cmEnd?`<div class="cm"><span>🎙 総評</span><p>${esc(s.cmEnd)}</p></div>`:aiReady()?`<button class="ghost small" id="aiEnd" ${s.cmBy?'disabled':''}>${s.cmBy?'🎙 総評を考え中…':'🎙 Claudeに総評してもらう'}</button>`:''}`;
   return sheetWrap(`end:${s.roundId}`,'最終結果',`<div class="res-head"><span class="eyebrow">${hist.length}局おわって</span><h2 class="res-title">優勝 <span class="nm">${st[0]&&st[0].id===me?'あなた':esc(st[0]?st[0].name:'')}</span></h2></div>
     <div class="tablewrap"><table class="final"><thead><tr><th>順位</th><th>なまえ</th><th class="num">コイン</th><th class="num">収支</th></tr></thead><tbody>${rows}</tbody></table></div>
-    ${aw.length?`<h3>称号</h3><div class="awards">${aw.map(([t,ps,sub])=>`<div class="award"><span class="aw-t">${t}</span><span class="aw-n">${ps.map(p=>avHTML(p,'s')+'<span>'+esc(p.id===me?'あなた':p.name)+'</span>').join('')}</span><span class="aw-s">${sub}</span></div>`).join('')}</div>`:''}
+    ${extra}${aw.length?`<h3>称号</h3><div class="awards">${aw.map(([t,ps,sub])=>`<div class="award"><span class="aw-t">${t}</span><span class="aw-n">${ps.map(p=>avHTML(p,'s')+'<span>'+esc(p.id===me?'あなた':p.name)+'</span>').join('')}</span><span class="aw-s">${sub}</span></div>`).join('')}</div>`:''}
     ${hist.length?`<h3>局ごとの記録</h3>${histTable(s)}`:''}${meH&&hs.length>1?stampRow([7,6,1,2]):''}`,
     `${host?'<button class="primary big" id="again">もう一回あそぶ</button>':'<span class="msg">ホストが「もう一回あそぶ」を押すと、同じメンバーで再戦</span>'}<button class="ghost" id="leave2">ロビーへ</button>`);
 }
@@ -1664,7 +2274,7 @@ function render(){
   if(fid){const e=document.getElementById(fid);if(e&&e!==document.activeElement){try{e.focus({preventScroll:true});if(fsel[0]!=null)e.setSelectionRange(fsel[0],fsel[1])}catch(x){}}}
   bind();
   fx.deal=null;fx.drawn=null;fx.flashTurn=false;fx.sheetLate=false;
-  setRackH();runTweens();syncTension();
+  setRackH();runTweens();syncTension();tickClocks();
 }
 function setRackH(){const r=$('#rack');document.documentElement.style.setProperty('--rackH',(r&&!r.hidden?r.offsetHeight:0)+'px')}
 function bind(){
@@ -1679,7 +2289,23 @@ function bind(){
   on('next',act.ready);on('force',act.force);on('again',act.again);on('copy',copyCode);on('invite',inviteLink);
   on('rules',()=>{ui.rulesSheet=true;ui.scoreSheet=false;render()});on('rulesClose',()=>{ui.rulesSheet=false;render()});
   on('score',()=>{ui.scoreSheet=true;ui.rulesSheet=false;render()});on('scoreClose',()=>{ui.scoreSheet=false;render()});
-  on('stampBtn',()=>{ui.stampTray=!ui.stampTray;render()});
+  on('stampBtn',()=>{ui.stampTray=!ui.stampTray;ui.whisperTo=null;ui.predTray=false;render()});
+  on('predBtn',()=>{ui.predTray=!ui.predTray;ui.stampTray=false;render()});
+  on('whisperOff',()=>{ui.whisperTo=null;render()});
+  on('backIn',act.back);on('aiAsk',()=>askAi(false));on('aiEnd',()=>askAi(true));
+  const sn=$('#specName');if(sn)sn.oninput=()=>{myName=sn.value.trim().slice(0,12);try{localStorage.setItem('dj_name',myName)}catch(e){}};
+  document.querySelectorAll('[data-watch]').forEach(b=>b.onclick=()=>watchRoom(b.dataset.watch));
+  document.querySelectorAll('[data-vote]').forEach(b=>b.onclick=()=>act.vote(b.dataset.vote));
+  document.querySelectorAll('[data-pred]').forEach(b=>b.onclick=()=>predict(b.dataset.pred));
+  document.querySelectorAll('[data-cto]').forEach(b=>b.onclick=()=>{ui.cheerTo=b.dataset.cto;render()});
+  document.querySelectorAll('[data-cheer]').forEach(b=>b.onclick=()=>sendCheer(+b.dataset.cheer));
+  document.querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>act.take(b.dataset.take));
+  document.querySelectorAll('[data-wto]').forEach(b=>b.onclick=()=>{ui.whisperTo=b.dataset.wto;render()});
+  document.querySelectorAll('[data-whisper]').forEach(b=>b.onclick=()=>sendWhisper(ui.whisperTo,+b.dataset.whisper));
+  document.querySelectorAll('[data-timer]').forEach(b=>b.onclick=()=>act.timer(+b.dataset.timer));
+  document.querySelectorAll('[data-rec]').forEach(b=>b.onclick=()=>recordVoice(b.dataset.rec));
+  document.querySelectorAll('[data-vplay]').forEach(b=>b.onclick=()=>{actx();playVoice({id:me},b.dataset.vplay,true)});
+  document.querySelectorAll('[data-vdel]').forEach(b=>b.onclick=()=>dropVoice(b.dataset.vdel));
   on('sndToggle',()=>{SND.on=!SND.on;saveSnd();if(SND.on){actx();sfx('stamp')}else{try{window.speechSynthesis&&window.speechSynthesis.cancel()}catch(e){}}bgmSync();render()});
   on('bgmToggle',()=>{SND.bgm=!(SND.on&&SND.bgm);if(SND.bgm)SND.on=true;saveSnd();bgmSync();render()});
   on('voiceToggle',()=>{VOICE.on=!(SND.on&&VOICE.on);if(VOICE.on&&!SND.on){SND.on=true;saveSnd()}try{localStorage.setItem('dj_voice',VOICE.on?'1':'0')}catch(e){}if(VOICE.on)speak('こえ、オン');else{try{window.speechSynthesis&&window.speechSynthesis.cancel()}catch(e){}}render()});
@@ -1704,7 +2330,7 @@ function bind(){
 window.addEventListener('resize',setRackH);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ui.rulesSheet){ui.rulesSheet=false;render()}});
 
-window.__dj={isWild,EVENTS,CPU_ORDER,CPU_STYLE,groupKinds,validImg,faceVer,groupKind,bestSplit,allSplits,yakuFor,winOpts,awards,scoreWin,waits,liveWaits,reachDiscards,readyInfo,tilesLeft,makeWall,dealRound,startGame,doDraw,doDiscard,doTsumo,doRon,canRon,nextRound,markReady,cpuChoose,CHARS};
+window.__dj={encodeWav,clockLeft,predOpen,setEvent,castVote,resolveVote,autoMove,backFromSub,goSub,checkAllReady,renameId,takeSeat,addClaps,addCpuClaps,rivalKey,rivalUpdate,hallEntry,hallUpdate,predHits,activeHumans,isWild,EVENTS,CPU_ORDER,CPU_STYLE,groupKinds,validImg,faceVer,groupKind,bestSplit,allSplits,yakuFor,winOpts,awards,scoreWin,waits,liveWaits,reachDiscards,readyInfo,tilesLeft,makeWall,dealRound,startGame,doDraw,doDiscard,doTsumo,doRon,canRon,nextRound,markReady,cpuChoose,CHARS};
 
 /* ---- boot ---- */
 (async()=>{
@@ -1721,6 +2347,9 @@ window.__dj={isWild,EVENTS,CPU_ORDER,CPU_STYLE,groupKinds,validImg,faceVer,group
   if(!me){try{me=localStorage.getItem('dj_id')}catch(e){} if(!me){me='p'+Math.random().toString(36).slice(2,10);try{localStorage.setItem('dj_id',me)}catch(e){}}}
   if(!db){render();return}
   if(myImg)uploadFace();
+  if(canRec()&&(myVoice.r||myVoice.w)){for(const k of ['r','w'])if(myVoice[k])decodeWav(myVoice[k]).then(b=>{myVoiceBuf[k]=b});uploadVoice()}
+  if(BACKEND==='claude')sampleApi().then(()=>render());
+  try{db.doc('hall/top').onSnapshot(sn=>{hall=sn&&sn.exists?sn.data():null;loadFaces({players:((hall&&hall.top)||[]).filter(e=>!e.cpu&&e.fv).map(e=>({id:e.id,fv:e.fv,cpu:false}))});if(!state)render()},()=>{})}catch(e){}
   db.collection('rooms').where('status','in',['lobby','playing','roundEnd']).limit(60).onSnapshot(q=>{
     rooms=q.docs.map(x=>x.data());if(state||entering)return;
     const a=document.activeElement;

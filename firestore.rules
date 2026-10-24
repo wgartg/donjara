@@ -50,6 +50,51 @@ service cloud.firestore {
       allow delete: if request.auth != null && request.auth.uid == uid;
     }
 
+    // 観戦・予想・応援:部屋ごとに 1人 1ドキュメント。書けるのは本人だけ
+    // (部屋が消えたあとに残ったものは、だれでも片づけられる)
+    match /rooms/{code}/fans/{uid} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['json', 'updatedAt', 'expireAt'])
+        && request.resource.data.json is string
+        && request.resource.data.json.size() < 8000;
+      allow delete: if request.auth != null
+        && (request.auth.uid == uid || !exists(/databases/$(database)/documents/rooms/$(code)));
+    }
+
+    // 声スタンプ 1人 = ドキュメント 1つ。置けるのは本人だけ、中身は短い WAV だけ
+    match /voices/{uid} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['r', 'w', 'v', 'updatedAt'])
+        && request.resource.data.r is string && request.resource.data.r.size() <= 24000
+        && (request.resource.data.r == '' || request.resource.data.r.matches('^data:audio/wav;base64,[A-Za-z0-9+/]+=*$'))
+        && request.resource.data.w is string && request.resource.data.w.size() <= 24000
+        && (request.resource.data.w == '' || request.resource.data.w.matches('^data:audio/wav;base64,[A-Za-z0-9+/]+=*$'))
+        && request.resource.data.v is string && request.resource.data.v.size() <= 40;
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // 因縁ボード(同じメンバーの通算成績)と、みんなの殿堂
+    match /rivals/{key} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null
+        && key.matches('^r[a-z0-9]{1,16}$')
+        && request.resource.data.keys().hasOnly(['json', 'updatedAt'])
+        && request.resource.data.json is string
+        && request.resource.data.json.size() < 20000;
+    }
+    match /hall/{id} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null
+        && id == 'top'
+        && request.resource.data.keys().hasOnly(['json', 'updatedAt'])
+        && request.resource.data.json is string
+        && request.resource.data.json.size() < 60000;
+    }
+
     // それ以外は全部しめる
     match /{document=**} {
       allow read, write: if false;
